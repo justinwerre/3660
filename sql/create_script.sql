@@ -39,3 +39,17 @@ VALUES
 	(2,'Counter Strike Global Offensive',19.99,'Teen','2013-02-11','csgo.jpg','I don\'t know disarm bomb and kill baddies','Valve'),
 	(3,'Dark Souls II',29.99,'Teen','2012-09-16','ds2.jpg','Prepare to get Raped edition','From Software'),
 	(4,'Borderlands: The Presequel',59.99,'Teen','2014-02-13','bl3.jpg','Same game for the third time now. Whoo!','Gearbox Software');
+
+DROP TABLE IF EXISTS `SHOPPINGCART`;
+
+CREATE TABLE `SHOPPINGCART` (
+	`serial_number` int(11) NOT NULL,
+	`cID` int(11) NOT NULL,
+	PRIMARY KEY (`serial_number`, `cID`)
+);
+
+INSERT INTO `SHOPPINGCART` (`serial_number`, `cID`)
+VALUES
+	(1, 4),
+	(2, 4),
+	(3, 3);
