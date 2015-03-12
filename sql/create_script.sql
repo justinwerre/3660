@@ -15,7 +15,7 @@ CREATE TABLE `CUSTOMERS` (
 INSERT INTO `CUSTOMERS` (`cID`, `cEmail`, `cPassword`, `cAddress`, `cfName`, `clName`, `cUserType`)
 VALUES
 	(1,'kevin@kkobay.com','hi','12','Kevin','Kobayashi',1),
-	(2, 'justin.werre.com', 'bye', '12', 'Justin', 'Werre', 1),
+	(2, 'justin@werre.com', 'bye', '12', 'Justin', 'Werre', 1),
 	(3,'ryan.kellet@uleth.ca','12','','Rylor','Kellort',0);
 
 DROP TABLE IF EXISTS `VIDEOGAMES`;

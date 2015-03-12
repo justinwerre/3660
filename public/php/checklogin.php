@@ -16,10 +16,10 @@
   $row = mysqli_fetch_row($result);
   if ($count == 1) {
       echo "Logged In as: " . $userEmail;
-      //session_start();
-      //$_SESSION["email"] = $_POST['email'];
-      //$_SESSION["admin"] = 1;
-      //header("location:adminpanel.php");
+      session_start();
+      $_SESSION["email"] = $_POST['email'];
+      $_SESSION["admin"] = 1;
+      header("location:listGames.php");
   } else {
     echo "Doesn't Exist";
       //header("location:incorrect.html");
