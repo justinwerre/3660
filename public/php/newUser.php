@@ -20,7 +20,7 @@ if (!mysqli_query($con, $sql)){
 }
 //else direct to confirmation
 else {
-  echo "Shit worked";
+  echo "User Created!";
   mysqli_close($con);
   /*
     mysqli_close($con);
