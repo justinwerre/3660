@@ -17,6 +17,7 @@
 
 	<div class="container">
 		<h1 class="header">VIDEO GAMES</h1>
+		<a class='btn btn-info pull-right' href='shoppingCart.php' role='button'>Shopping Cart</a>
 			<table class='table table-bordered table-striped'> 
 				<tr><th>Art</th><th>Title</th><th>Description</th><th>Price</th><th>Add to Cart</th><th>Edit</th></tr>
 					<?php
