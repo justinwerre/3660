@@ -29,7 +29,7 @@
 							echo "<td><strong>{$row['title']}</strong></td>";
 							echo "<td>{$row['description']}</td>";
 							echo "<td>\${$row['price']}</td>";
-							echo "<td><a class='btn btn-success' href=addToCart.php?serial_number={$row['serial_number']}' role='button'>Add to Cart</a><?td>";
+							echo "<td><a class='btn btn-success' href='addToCart.php?serial_number={$row['serial_number']}' role='button'>Add to Cart</a><?td>";
 							echo "<td><a class='btn btn-primary' href='editGames.php?serial_number={$row['serial_number']}' role='button'>Edit</a></td>";
 							echo "</tr>"; 
 						}

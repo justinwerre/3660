@@ -23,13 +23,14 @@
             INNER JOIN VIDEOGAMES ON VIDEOGAMES.serial_number = SHOPPINGCART.serial_number
             WHERE SHOPPINGCART.cID = " . $_SESSION['ID'] . ";";
           $result = $con->query($query);
+					
           while($row = $result->fetch_assoc()){
 						echo "<tr>";
-						echo "<td>" . $row['title'] . "</td>";
-						echo "<td>" . $row['description'] . "</td>";
-						echo "<td>" . $row['ESRB_rating'] . "</td>";
-						echo "<td>" . $row['price'] . "</td>";
-						echo "<td><a class='btn btn-danger' href='shoppingCartRemove/?serial_number=" . $row['serial_number'] . "' role='button'>Remove</a></td>";
+						echo "<td>{$row['title']}</td>";
+						echo "<td>{$row['description']}</td>";
+						echo "<td>{$row['ESRB_rating']}</td>";
+						echo "<td>{$row['price']}</td>";
+						echo "<td><a class='btn btn-danger' href='shoppingCartRemove/?serial_number={$row['serial_number']}' role='button'>Remove</a></td>";
 						echo "</tr>";
           }
               
@@ -37,6 +38,7 @@
         ?>
       </table>
 			<a class='btn btn-success pull-right' href='#'>Purchase</a>
+			<a class='btn btn-primary pull-right' href="listEditGames.php">Continue Shopping</a>
     </div>
   </body>
 </html>
