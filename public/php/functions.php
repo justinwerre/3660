@@ -10,12 +10,9 @@
 
     echo "<tr><td>". "<img src=\"../img/".$row['cover_art']."\" height=\"50\" width=\"100\">"."</td><td>" . "<strong>".$row['title'] ."</strong>"."</td><td>" . $row['description'] . "</td><td>" . "$".$row['price'] ."</td><td>" . "<a class=\"btn btn-primary\" href=\"#\" role=\"button\">Add to Cart</a>" ."</td></tr>";  //$row['index'] the index here is a field name
     }
-
-    echo "</table>"; //Close the table in HTML
+    echo "</table>";
 
     mysql_close();
-
-
   }
 
 ?>
