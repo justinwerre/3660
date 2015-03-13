@@ -17,15 +17,20 @@
       <table class="table table-bordered">
         <?php 
           session_start();
-          $query = "SELECT *
+          $query = "SELECT VIDEOGAMES.title, VIDEOGAMES.description, VIDEOGAMES.ESRB_rating, VIDEOGAMES.price, SHOPPINGCART.serial_number
             FROM SHOPPINGCART
             INNER JOIN CUSTOMERS ON CUSTOMERS.cID = SHOPPINGCART.cID
             INNER JOIN VIDEOGAMES ON VIDEOGAMES.serial_number = SHOPPINGCART.serial_number
             WHERE SHOPPINGCART.cID = " . $_SESSION['ID'] . ";";
-          $result = mysqli_query($con, $sql);// or die(mysql_error());
-          var_dump($query);
-          while($row = mysqli_fetch_array($result)){
-            var_dump($row);
+          $result = $con->query($query);
+          while($row = $result->fetch_assoc()){
+						echo "<tr>";
+						echo "<td>" . $row['title'] . "</td>";
+						echo "<td>" . $row['description'] . "</td>";
+						echo "<td>" . $row['ESRB_rating'] . "</td>";
+						echo "<td>" . $row['price'] . "</td>";
+						echo "<td><a class='btn btn-danger' href='shoppingCartRemove/?serial_number=" . $row['serial_number'] . "' role='button'>Remove</a></td>";
+						echo "</tr>";
           }
               
           mysqli_close($con);
