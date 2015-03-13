@@ -21,7 +21,7 @@
       $_SESSION["email"] = $_POST['email'];
       $_SESSION["ID"] = $row['cID'];
       $_SESSION["admin"] = 1;
-      header("location:listGames.php");
+      header("location:listEditGames.php");
   } else {
     echo "Doesn't Exist";
       //header("location:incorrect.html");
