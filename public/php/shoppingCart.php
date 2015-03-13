@@ -14,7 +14,7 @@
     
     <div class="container">
       <h1 class="header">Shopping Cart</h1>
-      <table class="table table-bordered">
+      <table class="table table-bordered table-striped">
         <?php 
           session_start();
           $query = "SELECT VIDEOGAMES.title, VIDEOGAMES.description, VIDEOGAMES.ESRB_rating, VIDEOGAMES.price, SHOPPINGCART.serial_number
@@ -36,6 +36,7 @@
           mysqli_close($con);
         ?>
       </table>
+			<a class='btn btn-success pull-right' href='#'>Purchase</a>
     </div>
   </body>
 </html>

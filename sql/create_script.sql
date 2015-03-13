@@ -52,4 +52,5 @@ INSERT INTO `SHOPPINGCART` (`cID`, `serial_number`)
 VALUES
 	(1, 4),
 	(2, 4),
+	(2, 2),
 	(3, 3);
