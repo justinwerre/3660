@@ -10,11 +10,11 @@
 						WHERE cID = $id
 						AND serial_number = $serial_number;";
 	$result = $con->query($query);
+
 	// if its not in the shopping cart already, add it to it.
 	if(0 == $result->num_rows){
 		$query = "INSERT INTO SHOPPINGCART(cID, serial_number)
 							values ($id, $serial_number);";
-		
 		$result = $con->query($query);
 		
 		if(! $result){
@@ -23,5 +23,7 @@
 			die();
 		}
 	}
+
+	$con->close();
 	header("location:shoppingCart.php");
 ?>

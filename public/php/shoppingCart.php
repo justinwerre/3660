@@ -34,7 +34,7 @@
 						echo "</tr>";
           }
               
-          mysqli_close($con);
+          $con->close();
         ?>
       </table>
 			<a class='btn btn-success pull-right' href='#'>Purchase</a>

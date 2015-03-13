@@ -35,7 +35,7 @@
 							echo "</tr>"; 
 						}
 
-						mysql_close();
+						$con->close();
 					?>
 			</table>
 		</div>
