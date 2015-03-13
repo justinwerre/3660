@@ -13,11 +13,13 @@
 
   $result = mysqli_query($con, $sql) or die(mysql_error());
   $count = mysqli_num_rows($result);
-  $row = mysqli_fetch_row($result);
+  $row = mysqli_fetch_assoc($result);
   if ($count == 1) {
+      var_dump($row);
       echo "Logged In as: " . $userEmail;
       session_start();
       $_SESSION["email"] = $_POST['email'];
+      $_SESSION["ID"] = $row['cID'];
       $_SESSION["admin"] = 1;
       header("location:listGames.php");
   } else {

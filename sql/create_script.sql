@@ -48,7 +48,7 @@ CREATE TABLE `SHOPPINGCART` (
 	PRIMARY KEY (`serial_number`, `cID`)
 );
 
-INSERT INTO `SHOPPINGCART` (`serial_number`, `cID`)
+INSERT INTO `SHOPPINGCART` (`cID`, `serial_number`)
 VALUES
 	(1, 4),
 	(2, 4),
