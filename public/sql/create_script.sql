@@ -1,20 +1,5 @@
-# ************************************************************
-# Sequel Pro SQL dump
-# Version 4135
-#
-# http://www.sequelpro.com/
-# http://code.google.com/p/sequel-pro/
-#
-# Host: localhost (MySQL 5.5.38)
-# Database: 3660Project
-# Generation Time: 2015-03-12 21:12:42 +0000
-# ************************************************************
-
-# Dump of table CUSTOMERS
-# ------------------------------------------------------------
-
-
-CREATE TABLE `CUSTOMERS` (
+DROP TABLE IF EXISTS CUSTOMERS;
+CREATE TABLE CUSTOMERS (
   `cID` int(11) NOT NULL AUTO_INCREMENT,
   `cEmail` varchar(30) NOT NULL DEFAULT '',
   `cPassword` varchar(15) NOT NULL DEFAULT '',
@@ -24,25 +9,15 @@ CREATE TABLE `CUSTOMERS` (
   `cUserType` tinyint(1) NOT NULL,
   PRIMARY KEY (`cID`),
   UNIQUE KEY `cEmail` (`cEmail`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
-
-LOCK TABLES `CUSTOMERS` WRITE;
-/*!40000 ALTER TABLE `CUSTOMERS` DISABLE KEYS */;
+);
 
 INSERT INTO `CUSTOMERS` (`cID`, `cEmail`, `cPassword`, `cAddress`, `cfName`, `clName`, `cUserType`)
 VALUES
-	(1,'kevin@kkobay.com','hi','12','Kevin','Kobayashi',1),
-	(3,'ryan.kellet@uleth.ca','12','','Rylor','Kellort',0);
-
-/*!40000 ALTER TABLE `CUSTOMERS` ENABLE KEYS */;
-UNLOCK TABLES;
-
-
-# Dump of table VIDEOGAMES
-# ------------------------------------------------------------
+  (1,'kevin@kkobay.com','hi','12','Kevin','Kobayashi',1),
+  (2, 'justin@werre.com', 'bye', '12', 'Justin', 'Werre', 1),
+  (3,'ryan.kellet@uleth.ca','12','','Rylor','Kellort',0);
 
 DROP TABLE IF EXISTS `VIDEOGAMES`;
-
 CREATE TABLE `VIDEOGAMES` (
   `serial_number` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(45) NOT NULL,
@@ -54,18 +29,51 @@ CREATE TABLE `VIDEOGAMES` (
   `developer` varchar(50) NOT NULL,
   PRIMARY KEY (`serial_number`),
   UNIQUE KEY `serial_number_UNIQUE` (`serial_number`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
-
-LOCK TABLES `VIDEOGAMES` WRITE;
-/*!40000 ALTER TABLE `VIDEOGAMES` DISABLE KEYS */;
+);
 
 INSERT INTO `VIDEOGAMES` (`serial_number`, `title`, `price`, `ESRB_rating`, `release_date`, `cover_art`, `description`, `developer`)
 VALUES
-	(1,'Hotline Miami',19.99,'Mature','2015-03-10','hotline2.jpg','Your a crazy mofo and you kill people','Devolver Games'),
-	(2,'Counter Strike Global Offensive',19.99,'Teen','2013-02-11','csgo.jpg','I don\'t know disarm bomb and kill baddies','Valve'),
-	(3,'Dark Souls II',29.99,'Teen','2012-09-16','ds2.jpg','Prepare to get Raped edition','From Software'),
-	(4,'Borderlands: The Presequel',59.99,'Teen','2014-02-13','bl3.jpg','Same game for the third time now. Whoo!','Gearbox Software');
+  (1,'Hotline Miami',19.99,'Mature','2015-03-10','hotline2.jpg','Your a crazy mofo and you kill people','Devolver Games'),
+  (2,'Counter Strike Global Offensive',19.99,'Teen','2013-02-11','csgo.jpg','I don\'t know disarm bomb and kill baddies','Valve'),
+  (3,'Dark Souls II',29.99,'Teen','2012-09-16','ds2.jpg','Prepare to get Raped edition','From Software'),
+  (4,'Borderlands: The Presequel',59.99,'Teen','2014-02-13','bl3.jpg','Same game for the third time now. Whoo!','Gearbox Software');
 
-/*!40000 ALTER TABLE `VIDEOGAMES` ENABLE KEYS */;
-UNLOCK TABLES;
---
+DROP TABLE IF EXISTS `SHOPPINGCART`;
+CREATE TABLE `SHOPPINGCART` (
+  `serial_number` int(11) NOT NULL,
+  `cID` int(11) NOT NULL,
+  PRIMARY KEY (`serial_number`, `cID`)
+);
+
+INSERT INTO `SHOPPINGCART` (`cID`, `serial_number`)
+VALUES
+  (1, 4),
+  (2, 4),
+  (2, 2),
+  (3, 3);
+
+DROP TABLE IF EXISTS `PURCHASES`;
+CREATE TABLE `PURCHASES` (
+  `pID` int(11) NOT NULL AUTO_INCREMENT,
+  `cID` int(11) NOT NULL,
+  `date` DATE NOT NULL,
+  PRIMARY KEY (`pID`)
+);
+
+INSERT INTO `PURCHASES` (`pID`, `cID`, `date`)
+VALUES 
+(1, 1, '2014-09-08'),
+(2, 2, '2014-09-09');
+
+DROP TABLE IF EXISTS `ORDERED`;
+CREATE TABLE `ORDERED` (
+  `serial_number` int(11) NOT NULL,
+  `pID` int(11) NOT NULL,
+  `price` decimal(7,2) NOT NULL,
+  PRIMARY KEY (`serial_number`, `pID`)
+);
+
+INSERT INTO `ORDERED` (`serial_number`, `pID`, `price`)
+VALUES 
+(1, 1, 19.99),
+(2, 2, 19.99);

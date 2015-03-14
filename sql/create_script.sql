@@ -1,6 +1,5 @@
-DROP TABLE IF EXISTS `CUSTOMERS`;
-
-CREATE TABLE `CUSTOMERS` (
+DROP TABLE IF EXISTS CUSTOMERS;
+CREATE TABLE CUSTOMERS (
   `cID` int(11) NOT NULL AUTO_INCREMENT,
   `cEmail` varchar(30) NOT NULL DEFAULT '',
   `cPassword` varchar(15) NOT NULL DEFAULT '',
@@ -19,7 +18,6 @@ VALUES
 	(3,'ryan.kellet@uleth.ca','12','','Rylor','Kellort',0);
 
 DROP TABLE IF EXISTS `VIDEOGAMES`;
-
 CREATE TABLE `VIDEOGAMES` (
   `serial_number` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(45) NOT NULL,
@@ -41,7 +39,6 @@ VALUES
 	(4,'Borderlands: The Presequel',59.99,'Teen','2014-02-13','bl3.jpg','Same game for the third time now. Whoo!','Gearbox Software');
 
 DROP TABLE IF EXISTS `SHOPPINGCART`;
-
 CREATE TABLE `SHOPPINGCART` (
 	`serial_number` int(11) NOT NULL,
 	`cID` int(11) NOT NULL,
@@ -54,3 +51,29 @@ VALUES
 	(2, 4),
 	(2, 2),
 	(3, 3);
+
+DROP TABLE IF EXISTS `PURCHASES`;
+CREATE TABLE `PURCHASES` (
+	`pID` int(11) NOT NULL AUTO_INCREMENT,
+	`cID` int(11) NOT NULL,
+	`date` DATE NOT NULL DEFAULT,
+	PRIMARY KEY (`pID`)
+);
+
+INSERT INTO `PURCHASES` (`pID`, `cID`, `date`)
+VALUES 
+(1, 1, '2014-09-08')
+(2, 2, '2014-09-09');
+
+DROP TABLE IF EXISTS `ORDERED`;
+CREATE TABLE `ORDERED` (
+	`serial_number` int(11) NOT NULL,
+	`pID` int(11) NOT NULL,
+	`price` decimal(7,2) NOT NULL
+	PRIMARY KEY (`serial_number`, `pID`)
+);
+
+INSERT INTO `ORDERED` (`serial_number`, `pID`, `price`)
+VALUES 
+(1, 1, 19.99)
+(2, 2, 19.99);
