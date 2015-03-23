@@ -15,15 +15,22 @@
   $count = mysqli_num_rows($result);
   $row = mysqli_fetch_assoc($result);
   if ($count == 1) {
-      var_dump($row);
-      echo "Logged In as: " . $userEmail;
       session_start();
       $_SESSION["email"] = $_POST['email'];
       $_SESSION["ID"] = $row['cID'];
-      $_SESSION["admin"] = 1;
-      header("location:listGames.php");
+      if($row['cUserType'] == "1"){
+        $_SESSION["admin"] = "1";
+        header("location:adminLanding.php");
+      }
+      else{
+        $_SESSION["admin"] = "0";
+        header("location:listGames.php");
+      }
+
   } else {
-    echo "Doesn't Exist";
+    echo "User Doesn't Exist";
+    echo "<br>";
+    echo "<a href=\"../html/newUser.html\">Click here to Sign up</a>";
       //header("location:incorrect.html");
   }
 
