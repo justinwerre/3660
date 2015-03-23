@@ -6,9 +6,14 @@
 
 <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 <style>
-.padder{
-  padding-bottom:10px;
+  .padder{
+    padding-bottom:10px;
 
+  }
+  .makeCenter {
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
   }
 </style>
  </head>
@@ -16,8 +21,11 @@
 
 
 <div class="container">
-      <marquee direction="left" behavior="alternate"  scrollamount="12"><h1 class="header">VIDEO GAME STORE</h1></marquee>
+    <div class="makeCenter">
+      <h1 class="header">VIDEO GAME STORE</h1>
       <a href="php/listGames.php"><img class="padder img-rounded"src="img/lordGaben.jpeg" alt="The One"></a>
+      <a href="php/listUsers.php">List Users</a>
+    </div>
 
                         <form class="form-horizontal" method='post' action='php/checklogin.php'>
                           <div class="form-group">
