@@ -34,7 +34,7 @@
     $gameTitle = $row['title'];
   }
   //Output yes or No
-  echo (mysqli_affected_rows($con)) ? "<h3 class='container text-success'>Edited $gameTitle. </h3><br />" : "<h3 class='container text-error'>Nothing changed. </h3><br />";
+  echo (mysqli_affected_rows($con)) ? "<h3 class='container text-success'>Edited $gameTitle. </h3><br />" : "<h3 class='container text-error'>No changes made. </h3><br />";
 }
 
 $row = mysqli_fetch_array ( mysqli_query($con,"SELECT * FROM `VIDEOGAMES` WHERE `serial_number` = '$serial_number' "));
@@ -61,7 +61,7 @@ $row = mysqli_fetch_array ( mysqli_query($con,"SELECT * FROM `VIDEOGAMES` WHERE 
 
       <div class="container">
         <div class="jumbotron">
-      <h1>Editing</h1>
+      <h2>Editing: <?echo $row['title']; ?></h2>
                         <form class="form-horizontal" method='post' action=''>
 
                           <div class="form-group">
@@ -123,10 +123,10 @@ $row = mysqli_fetch_array ( mysqli_query($con,"SELECT * FROM `VIDEOGAMES` WHERE 
 
                         <div class="form-group">
                           <div class="col-sm-offset-2 col-sm-10">
-                            <input type='submit' class="btn btn-info" value='Edit VideoGames' /><input type='hidden' value='1' name='submitted' />
+                            <input type='submit' class="btn btn-info" value='Edit VideoGame' /><input type='hidden' value='1' name='submitted' />
                             </div>
                             <div class="col-sm-offset-0 col-sm-10">
-                              <button class="btn btn-danger" formaction="../index.html">Back</a>
+                              <button class="btn btn-danger" formaction="../php/listGames.php">Back</a>
                               </div>
                           </div>
                         </form>
