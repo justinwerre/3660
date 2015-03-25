@@ -38,7 +38,7 @@
         ?>
       </table>
 			<a class='btn btn-success pull-right' href='checkout.php'>Checkout</a>
-			<a class='btn btn-primary' href="listEditGames.php">Continue Shopping</a>
+			<a class='btn btn-primary' href="listGames.php">Continue Shopping</a>
     </div>
   </body>
 </html>

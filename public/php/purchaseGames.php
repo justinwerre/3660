@@ -10,6 +10,8 @@
           INNER JOIN VIDEOGAMES ON VIDEOGAMES.serial_number = SHOPPINGCART.serial_number
           WHERE SHOPPINGCART.cID = {$customer_id};";
   $cart = $con->query($query);
+  var_dump($con);
+  var_dump($cart);
   $today = date("Y-m-d");
 
   // create a purchase record
@@ -17,7 +19,6 @@
             VALUES ({$customer_id}, '{$today}');";
   $t = $con->query($query);
   $purchaseId = $con->insert_id;
-  var_dump($purchaseId);
 
   // add the games to the purchase record
   while($row = $cart->fetch_assoc()){
@@ -39,19 +40,16 @@
   <head>
     <meta charset="utf-8">
     <title>Video Games</title>
-
     <link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="../css/bootstrap-theme.css">
-
   </head>
   <body>
-    
     <div class="container">
       <h1 class="header">Shopping Cart</h1>
       <table class="table table-bordered table-striped">
       </table>
 			<a class='btn btn-success pull-right' href='checkout.php'>Checkout</a>
-			<a class='btn btn-primary' href="listEditGames.php">Continue Shopping</a>
+			<a class='btn btn-primary' href="listGames.php">Continue Shopping</a>
     </div>
   </body>
 </html>

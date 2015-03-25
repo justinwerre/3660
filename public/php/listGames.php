@@ -20,6 +20,7 @@
 
 <div class="container">
       <h1 class="header">VIDEO GAMES</h1>
+      <a class='btn btn-info pull-right' href='shoppingCart.php' role='button'>Shopping Cart</a>
 
       <?php
           $query = "SELECT * FROM VIDEOGAMES";
