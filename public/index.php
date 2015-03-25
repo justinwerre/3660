@@ -1,3 +1,8 @@
+<?php
+  include "php/functions.php";
+  loggedIn();
+?>
+
 <!DOCTYPE html>
 
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -8,36 +13,45 @@
 <style>
   .padder{
     padding-bottom:10px;
-
+  }
+  .padder-top{
+    padding-top:200px;
+  }
+  .padder-left{
+    padding-left:75px;
   }
   .makeCenter {
     margin-left: auto;
     margin-right: auto;
     width: 70%;
   }
+
+
+  .resizeBox{
+    width:450px;
+
+  }
 </style>
  </head>
     <body>
 
 
-<div class="container">
-    <div class="makeCenter">
-      <h1 class="header">VIDEO GAME STORE</h1>
-      <a href="php/listGames.php"><img class="padder img-rounded"src="img/lordGaben.jpeg" alt="The One"></a>
-      <a href="php/listUsers.php">List Users</a>
+<div class="container padder-left padder-top">
+    <div class="">
+      <h1 class="header makeCenter">VIDEO GAME STORE</h1>
     </div>
 
-                        <form class="form-horizontal" method='post' action='php/checklogin.php'>
+                        <form class="form-horizontal makeCenter" method='post' action='php/checklogin.php'>
                           <div class="form-group">
                             <label for="emailInput" class="col-sm-2 control-label">Email address</label>
                             <div class="col-sm-10">
-                            <input class="form-control" type="email" name="email" placeholder="Email Address">
+                            <input class="form-control resizeBox" type="email" name="email" placeholder="Email Address">
                           </div>
                         </div>
-                          <div class="form-group">
+                          <div class="form-group ">
                             <label for="passwordInput" class="col-sm-2 control-label">Password</label>
                             <div class="col-sm-10">
-                            <input class="form-control" type="password" name="pwd" placeholder="Password">
+                            <input class="form-control resizeBox" type="password" name="pwd" placeholder="Password">
                           </div>
                         </div>
                         <div class="form-group">

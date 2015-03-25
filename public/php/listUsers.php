@@ -1,7 +1,7 @@
 <?php
   include "databaseConnect.php";
   include "functions.php";
-
+  checkAdmin();
 ?>
 <!DOCTYPE html>
 
@@ -20,7 +20,7 @@
 
 <div class="container">
       <h1 class="header">Customers</h1>
-
+      <a class="btn btn-info pull-right" href="newUser.php" role="button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> New User</a>
       <?php
           $query = "SELECT * FROM CUSTOMERS";
           $result = mysqli_query($con, $query);
@@ -42,20 +42,16 @@
             echo "</td><td>";
               if($row['cUserType']=="1") echo "Admin";
                 else if ($row['cUserType']=="0") echo "User";
-            echo "</td><td> <a class=\"btn btn-primary\" href=\"editUsers.php?cID={$row['cID']}\" role=\"button\">Edit User</a>";
-            echo "</td><td> <a class=\"btn btn-danger\" href=\"deleteCart.php?cID={$row['cID']}\" role=\"button\">Empty Cart</a>";
+            echo "</td><td> <a class=\"btn btn-primary\" href=\"editUsers.php?cID={$row['cID']}\" role=\"button\"><span class=\"glyphicon glyphicon-pencil\" aria-hidden=\"true\"></span> Edit</a>";
+            echo "</td><td> <a class=\"btn btn-danger\" href=\"deleteCart.php?cID={$row['cID']}\" role=\"button\"><span class=\"glyphicon glyphicon-trash\" aria-hidden=\"true\"></span> Empty Cart</a>";
             echo "</td></tr>";
           }
           echo "</table>";
 
           mysql_close();
       ?>
+      <a href="adminLanding.php"<button type="button" class="btn btn-info">Back</button></a>
 </div>
-
-
-<table class="table table-bordered">
-
-</table>
 
 
     </body>

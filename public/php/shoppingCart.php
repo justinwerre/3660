@@ -11,11 +11,11 @@
 
   </head>
   <body>
-    
+
     <div class="container">
       <h1 class="header">Shopping Cart</h1>
       <table class="table table-bordered table-striped">
-        <?php 
+        <?php
           session_start();
           $query = "SELECT VIDEOGAMES.title, VIDEOGAMES.description, VIDEOGAMES.ESRB_rating, VIDEOGAMES.price, SHOPPINGCART.serial_number
             FROM SHOPPINGCART
@@ -23,7 +23,7 @@
             INNER JOIN VIDEOGAMES ON VIDEOGAMES.serial_number = SHOPPINGCART.serial_number
             WHERE SHOPPINGCART.cID = " . $_SESSION['ID'] . ";";
           $result = $con->query($query);
-					
+
           while($row = $result->fetch_assoc()){
 						echo "<tr>";
 						echo "<td>{$row['title']}</td>";
@@ -33,12 +33,12 @@
 						echo "<td><a class='btn btn-danger' href='shoppingCartRemove/?serial_number={$row['serial_number']}' role='button'>Remove</a></td>";
 						echo "</tr>";
           }
-              
+
           $con->close();
         ?>
       </table>
 			<a class='btn btn-success pull-right' href='#'>Purchase</a>
-			<a class='btn btn-primary pull-right' href="listEditGames.php">Continue Shopping</a>
+			<a class='btn btn-primary pull-right' href="listGames.php">Continue Shopping</a>
     </div>
   </body>
 </html>
