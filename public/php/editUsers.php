@@ -1,7 +1,8 @@
 <?php
   include "databaseConnect.php";
   include "functions.php";
-
+  checkAdmin();
+  
   //Check to make sure, Serial number is passed
   if (isset($_GET['cID']) ) {
   	$cID = (int) $_GET['cID'];
@@ -111,7 +112,7 @@ $row = mysqli_fetch_array ( mysqli_query($con,"SELECT * FROM `CUSTOMERS` WHERE `
 
                         <div class="form-group">
                           <div class="col-sm-offset-2 col-sm-10">
-                            <input type='submit' class="btn btn-info" value='Edit User' /><input type='hidden' value='1' name='submitted' />
+                            <input type='submit' class="btn btn-info pull-right" value='Confirm' /><input type='hidden' value='1' name='submitted' />
                             </div>
                             <div class="col-sm-offset-0 col-sm-10">
                               <button class="btn btn-danger" formaction="../php/listUsers.php">Back</a>

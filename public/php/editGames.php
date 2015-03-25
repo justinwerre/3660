@@ -1,6 +1,7 @@
 <?php
   include "databaseConnect.php";
   include "functions.php";
+  checkAdmin();
 
   //Check to make sure, Serial number is passed
   if (isset($_GET['serial_number']) ) {
@@ -34,7 +35,7 @@
     $gameTitle = $row['title'];
   }
   //Output yes or No
-  echo (mysqli_affected_rows($con)) ? "<h3 class='container text-success'>Edited $gameTitle. </h3><br />" : "<h3 class='container text-error'>No changes made. </h3><br />";
+  echo (mysqli_affected_rows($con)) ? "<h3 class='container text-success'>Edited $gameTitle. </h3><br />" : "<h3 class='container text-error'>No changes were made. </h3><br />";
 }
 
 $row = mysqli_fetch_array ( mysqli_query($con,"SELECT * FROM `VIDEOGAMES` WHERE `serial_number` = '$serial_number' "));
@@ -122,8 +123,8 @@ $row = mysqli_fetch_array ( mysqli_query($con,"SELECT * FROM `VIDEOGAMES` WHERE 
               </div>
 
                         <div class="form-group">
-                          <div class="col-sm-offset-2 col-sm-10">
-                            <input type='submit' class="btn btn-info" value='Edit VideoGame' /><input type='hidden' value='1' name='submitted' />
+                          <div class="col-sm-offset-2 col-sm-10 ">
+                            <input type='submit' class="btn btn-info pull-right" value='Confirm' /><input type='hidden' value='1' name='submitted' />
                             </div>
                             <div class="col-sm-offset-0 col-sm-10">
                               <button class="btn btn-danger" formaction="../php/listGames.php">Back</a>

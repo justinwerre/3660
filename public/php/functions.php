@@ -1,18 +1,28 @@
 <?php
-  function listGames($con) {
-
-    $query = "SELECT * FROM VIDEOGAMES";
-    $result = mysqli_query($con, $query);
-
-    echo "<table class=\"table table-bordered table-striped\">"; // start a table tag in the HTML
-    echo "<tr><th>Art</th><th>Title</th><th>Description</th><th>Price</th><th>Purchase</th></tr>";
-    while($row = mysqli_fetch_array($result)){   //Creates a loop to loop through results
-
-    echo "<tr><td>". "<img src=\"../img/".$row['cover_art']."\" height=\"50\" width=\"100\">"."</td><td>" . "<strong>".$row['title'] ."</strong>"."</td><td>" . $row['description'] . "</td><td>" . "$".$row['price'] ."</td><td>" . "<a class=\"btn btn-primary\" href=\"#\" role=\"button\">Add to Cart</a>" ."</td></tr>";  //$row['index'] the index here is a field name
+  function checkUser() {
+        session_start();
+        if ( (!isset($_SESSION['email'])) || ($_SESSION['admin'] == 1)) {
+            session_destroy();
+            header("location:../index.php");
+        }
     }
-    echo "</table>";
 
-    mysql_close();
+
+  function checkAdmin() {
+    session_start();
+    if (!(isset($_SESSION['admin'])) || ($_SESSION['admin'] != 1)) {
+        header("location:../index.php");
+    }
+  }
+
+  function loggedIn(){
+    session_start();
+    if((isset($_SESSION['admin'])) && ($_SESSION['admin'] == 1) ) {
+      header("location:php/adminLanding.php");
+    }
+    else if ( (isset($_SESSSION['email'])) || ($_SESSION['admin'] != 1)){
+      header("location:php/userLanding.php");
+    }
   }
 
 ?>
