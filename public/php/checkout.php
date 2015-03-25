@@ -13,7 +13,7 @@
   <body>
     
     <div class="container">
-      <h1 class="header">Shopping Cart</h1>
+      <h1 class="header">Confirm Purchase</h1>
       <table class="table table-bordered table-striped">
         <?php 
           session_start();
@@ -23,6 +23,7 @@
             INNER JOIN VIDEOGAMES ON VIDEOGAMES.serial_number = SHOPPINGCART.serial_number
             WHERE SHOPPINGCART.cID = " . $_SESSION['ID'] . ";";
           $result = $con->query($query);
+          $total = 0;
 					
           while($row = $result->fetch_assoc()){
 						echo "<tr>";
@@ -30,15 +31,17 @@
 						echo "<td>{$row['description']}</td>";
 						echo "<td>{$row['ESRB_rating']}</td>";
 						echo "<td>{$row['price']}</td>";
-						echo "<td><a class='btn btn-danger' href='shoppingCartRemove/?serial_number={$row['serial_number']}' role='button'>Remove</a></td>";
 						echo "</tr>";
+            $total += $row['price'];
           }
+          echo "<tr><td colspan=3>Total</td><td>$total</td></tr>";
               
           $con->close();
         ?>
       </table>
-			<a class='btn btn-success pull-right' href='checkout.php'>Checkout</a>
-			<a class='btn btn-primary' href="listEditGames.php">Continue Shopping</a>
+      <a class="btn btn-danger" href="shoppingCart.php">Cancel</a>
+      <a class="btn btn-primary" href="listGames.php">Continue shopping</a>
+			<a class='btn btn-success pull-right' href='purchaseGames.php'>Purchase</a>
     </div>
   </body>
 </html>

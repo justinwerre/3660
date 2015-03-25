@@ -1,7 +1,7 @@
 <?php
   include "databaseConnect.php";
   include "functions.php";
-  $isAdmin = 1;
+  $isAdmin = 0;
 ?>
 <!DOCTYPE html>
 
@@ -33,12 +33,16 @@
           if($isAdmin == 1) echo "<th>Edit</th></tr>";
           else echo "<th>Add to Cart</th></tr>";
           while($row = mysqli_fetch_array($result)){   //Creates a loop to loop through results
-
-          echo "<tr><td>". "<img src=\"../img/".$row['cover_art']."\" height=\"50\" width=\"100\">"."
-          </td><td>" . "<strong>".$row['title'] ."</strong>"."</td><td>" .
-            $row['description'] . "</td><td>" . "$".$row['price'] .
-            "</td><td>" . "<a class=\"btn btn-primary\" href=\"editGames.php?serial_number={$row['serial_number']}\" role=\"button\">Edit</a>" .
-            "</td></tr>";
+              echo "<tr>";
+              echo "<td><img src='../img/{$row['cover_art']}'height='50' width='100'></td>";
+              echo "<td><strong>{$row['title']}</strong></td>";
+              echo "<td>{$row['description']}</td>";
+              echo "<td>\${$row['price']}</td>";
+              if($isAdmin == 1)
+                echo "<td><a class='btn btn-primary' href='editGames.php?serial_number={$row['serial_number']}' role='button'>Edit</a></td>";
+              else
+                echo "<td><a class='btn btn-success' href='addToCart.php?serial_number={$row['serial_number']}' role='button'>Add to Cart</a><?td>";
+              echo "</tr>"; 
           }
           echo "</table>";
 
