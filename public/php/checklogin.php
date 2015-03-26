@@ -7,9 +7,9 @@
   $userEmail = $_POST['email'];
   $userPass = $_POST['pwd'];
 
-  $sql = "SELECT * FROM CUSTOMERS WHERE cEmail='$userEmail' and cPassword='$userPass' and cActive ='1'";
-
-  $result = mysqli_query($con, $sql) or die(mysql_error());
+  $sql = "SELECT * FROM CUSTOMERS WHERE cEmail='$userEmail' and cPassword='$userPass' and cActive ='1';";
+  
+  $result = mysqli_query($con, $sql)or die(mysql_error());
   $count = mysqli_num_rows($result);
   $row = mysqli_fetch_assoc($result);
 
