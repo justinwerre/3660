@@ -1,7 +1,6 @@
 <?php
   include "databaseConnect.php";
   include "functions.php";
-
   session_start();
 
   //If logged in as admin, Display page accordingly
@@ -11,7 +10,6 @@
   else {
     $isAdmin = 0;
   }
-
 ?>
 <!DOCTYPE html>
 
@@ -24,15 +22,13 @@
 <link rel="stylesheet" type="text/css" href="../css/jquery.dataTables.css">
 <link rel="stylesheet" type="text/css" href="../css/bootstrap-theme.css">
 
-<style>
-</style>
-
  </head>
     <body>
 
 
 <div class="container">
       <h1 class="header">VIDEO GAMES</h1>
+
 <?php
       if($isAdmin == 1){
         echo "<a class='btn btn-info pull-right' href='addGames.php' role='button'><span class=\"glyphicon glyphicon-plus\" aria-hidden=\"true\"></span> Add Game</a>";
@@ -54,7 +50,7 @@
             echo "<th>Edit</th>
                   <th>Delete</th></tr>";
             }
-            else echo "<th>Add to Cart</th></tr>";
+          else echo "<th>Add to Cart</th></tr>";
 
           echo "</thead>
                 <tbody>";
@@ -84,16 +80,15 @@
               echo "</td></tr>";
             }
 
-          echo "</tbody>";
+          echo "</tbody>"; 
           echo "</table>";
           echo "</div>";
-
-          mysql_close();
 
       if($isAdmin == 1 ){
         echo "<a href=\"adminLanding.php\"<button type=\"button\" class=\"btn btn-info\">Back</button></a>";
       }
       else echo "<a href=\"userLanding.php\"<button type=\"button\" class=\"btn btn-info\">Back</button></a>";
+          $con->close();
       ?>
 </div>
 

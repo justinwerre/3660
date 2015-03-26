@@ -35,9 +35,9 @@ CREATE TABLE `VIDEOGAMES` (
 
 INSERT INTO `VIDEOGAMES` (`serial_number`, `title`, `price`, `ESRB_rating`, `release_date`, `cover_art`, `description`, `developer`)
 VALUES
-	(1,'Hotline Miami',19.99,'Mature','2015-03-10','hotline2.jpg','Your a crazy mofo and you kill people','Devolver Games'),
+	(1,'Hotline Miami',19.99,'Mature','2015-03-10','hotline2.jpg','You\'re crazy and you kill people','Devolver Games'),
 	(2,'Counter Strike Global Offensive',19.99,'Teen','2013-02-11','csgo.jpg','I don\'t know disarm bomb and kill baddies','Valve'),
-	(3,'Dark Souls II',29.99,'Teen','2012-09-16','ds2.jpg','Prepare to get Raped edition','From Software'),
+	(3,'Dark Souls II',29.99,'Teen','2012-09-16','ds2.jpg','Prepare to get Die edition','From Software'),
 	(4,'Borderlands: The Presequel',59.99,'Teen','2014-02-13','bl3.jpg','Same game for the third time now. Whoo!','Gearbox Software');
 
 DROP TABLE IF EXISTS `SHOPPINGCART`;
@@ -58,24 +58,23 @@ DROP TABLE IF EXISTS `PURCHASES`;
 CREATE TABLE `PURCHASES` (
 	`pID` int(11) NOT NULL AUTO_INCREMENT,
 	`cID` int(11) NOT NULL,
-	`date` DATE NOT NULL DEFAULT,
+	`pDate` DATE NOT NULL,
 	PRIMARY KEY (`pID`)
 );
 
-INSERT INTO `PURCHASES` (`pID`, `cID`, `date`)
-VALUES
-(1, 1, '2014-09-08')
+INSERT INTO `PURCHASES` (`pID`, `cID`, `pDate`)
+VALUES 
+(1, 1, '2014-09-08'),
 (2, 2, '2014-09-09');
 
 DROP TABLE IF EXISTS `ORDERED`;
 CREATE TABLE `ORDERED` (
 	`serial_number` int(11) NOT NULL,
 	`pID` int(11) NOT NULL,
-	`price` decimal(7,2) NOT NULL
+	`price` decimal(7,2) NOT NULL,
 	PRIMARY KEY (`serial_number`, `pID`)
 );
 
-INSERT INTO `ORDERED` (`serial_number`, `pID`, `price`)
-VALUES
-(1, 1, 19.99)
+INSERT INTO `ORDERED` (`serial_number`, `pID`, `price`)VALUES 
+(1, 1, 19.99),
 (2, 2, 19.99);

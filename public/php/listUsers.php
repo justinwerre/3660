@@ -60,7 +60,7 @@
                 </table>
                 </div>";
 
-          mysql_close();
+          $con->close();
       ?>
       <a href="adminLanding.php"<button type="button" class="btn btn-info">Back</button></a>
 </div>
