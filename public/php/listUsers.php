@@ -20,7 +20,7 @@
 
 <div class="container">
       <h1 class="header">Customers</h1>
-      <a class="btn btn-info pull-right" href="newUser.php" role="button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> New User</a>
+      <a class="btn btn-info pull-right" href="addUsers.php" role="button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> New User</a>
       <?php
           $query = "SELECT * FROM CUSTOMERS";
           $result = mysqli_query($con, $query);

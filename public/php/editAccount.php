@@ -1,11 +1,15 @@
 <?php
   include "databaseConnect.php";
   include "functions.php";
-  checkAdmin();
+  
+  checkUser();
 
-  //Check to make sure, Serial number is passed
-  if (isset($_GET['cID']) ) {
-  	$cID = (int) $_GET['cID'];
+  if (isset($_SESSION["email"])) {
+    $myEmail = $_SESSION["email"];
+  }
+
+  if (isset($_SESSION["ID"])){
+    $cID = $_SESSION["ID"];
   }
 
   //If Page is submitted check
@@ -61,13 +65,13 @@ $row = mysqli_fetch_array ( mysqli_query($con,"SELECT * FROM `CUSTOMERS` WHERE `
 
       <div class="container">
         <div class="jumbotron">
-      <h2>Editing <?echo $row['cfName'] ." ". $row['clName'] .":"; ?></h2>
+      <h2><?echo $row['cfName'] ." ". $row['clName'] .":"; ?></h2>
                         <form class="form-horizontal" method='post' action=''>
 
                           <div class="form-group">
                             <label for="title" class="col-sm-2 control-label">Email</label>
                             <div class="col-sm-10">
-                            <input class="form-control" type="email" required name="email" value='<?= stripslashes($row['cEmail']) ?>'>
+                            <input class="form-control" type="email" name="email" required value='<?= stripslashes($row['cEmail']) ?>'>
                           </div>
                         </div>
 
@@ -103,7 +107,7 @@ $row = mysqli_fetch_array ( mysqli_query($con,"SELECT * FROM `CUSTOMERS` WHERE `
               <div class="form-group">
                 <label for="" class="col-sm-2 control-label">User Type</label>
                 <div class="col-sm-10">
-              <select class="form-control" id='UserType' required name='UserType'>
+              <select class="form-control" id='creditCard' required name='UserType'>
                       <option value="1"  <?php if($row['cUserType']=="1") echo "selected";?>>Admin</option>
                       <option value="0"  <?php if($row['cUserType']=="0") echo "selected";?>>User</option>
               </select>
@@ -115,7 +119,7 @@ $row = mysqli_fetch_array ( mysqli_query($con,"SELECT * FROM `CUSTOMERS` WHERE `
                             <input type='submit' class="btn btn-info pull-right" value='Confirm' /><input type='hidden' value='1' name='submitted' />
                             </div>
                             <div class="col-sm-offset-0 col-sm-10">
-                              <button class="btn btn-danger" formaction="../php/listUsers.php">Back</a>
+                              <button class="btn btn-danger" formaction="../php/userLanding.php">Back</a>
                               </div>
                           </div>
                         </form>

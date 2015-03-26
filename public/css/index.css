@@ -1,0 +1,22 @@
+.padder-bottom{
+  padding-bottom:10px;
+}
+.padder-top{
+  padding-top:50px;
+}
+.big-padder-top{
+  padding-top:200px;
+}
+
+.padder-left{
+  padding-left:75px;
+}
+.makeCenter {
+  margin-left: auto;
+  margin-right: auto;
+  width: 70%;
+}
+.resizeBox{
+  width:450px;
+
+}
