@@ -1,4 +1,5 @@
 <?php
+  //Redirects if not Loggedin
   function checkUser() {
         session_start();
         if ( (!isset($_SESSION['email'])) || ($_SESSION['admin'] == 1)) {
@@ -7,14 +8,16 @@
         }
     }
 
-
+  //Redirects if not Logged in as admin
   function checkAdmin() {
     session_start();
     if (!(isset($_SESSION['admin'])) || ($_SESSION['admin'] != 1)) {
+        session_destroy();
         header("location:../index.php");
     }
   }
 
+  //Used for index.php, Check to see if already loggedin and redirect
   function loggedIn(){
     session_start();
     if((isset($_SESSION['admin'])) && ($_SESSION['admin'] == 1) ) {

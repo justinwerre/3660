@@ -2,17 +2,18 @@
   include 'functions.php';
   include "databaseConnect.php";
 
+  //Grab Values
   $tableName = 'CUSTOMERS';
   $userEmail = $_POST['email'];
   $userPass = $_POST['pwd'];
 
-  //$hashed_pass = md5($userPass);
-
-  $sql = "SELECT * FROM CUSTOMERS WHERE cEmail='$userEmail' and cPassword='$userPass'";
+  $sql = "SELECT * FROM CUSTOMERS WHERE cEmail='$userEmail' and cPassword='$userPass' and cActive ='1'";
 
   $result = mysqli_query($con, $sql) or die(mysql_error());
   $count = mysqli_num_rows($result);
   $row = mysqli_fetch_assoc($result);
+
+  //If found and Account is active start Session
   if ($count == 1) {
 
       session_start();
@@ -28,6 +29,7 @@
         header("location:userLanding.php");
       }
   }
+
 ?>
 
 <!DOCTYPE html>
@@ -37,27 +39,8 @@
         <title>Error</title>
 
 <link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="../css/index.css">
 <style>
-  .padder{
-    padding-bottom:10px;
-  }
-  .padder-top{
-    padding-top:200px;
-  }
-  .padder-left{
-    padding-left:75px;
-  }
-  .makeCenter {
-    margin-left: auto;
-    margin-right: auto;
-    width: 70%;
-  }
-
-
-  .resizeBox{
-    width:450px;
-
-  }
 </style>
  </head>
     <body>

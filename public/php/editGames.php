@@ -22,7 +22,8 @@
   `release_Date` =  '{$_POST['releaseDate']}',
   `cover_art` =  '{$_POST['cover_art']}' ,
   `description` =  '{$_POST['description']}' ,
-  `developer` =  '{$_POST['developer']}'
+  `developer` =  '{$_POST['developer']}',
+  `enabled` = '{$_POST['gameEnabled']}'
   WHERE `serial_number` = '$serial_number' ";
 
   mysqli_query($con,$sql) or die(mysqli_error($con));
@@ -35,7 +36,7 @@
     $gameTitle = $row['title'];
   }
   //Output yes or No
-  echo (mysqli_affected_rows($con)) ? "<h3 class='container text-success'>Edited $gameTitle. </h3><br />" : "<h3 class='container text-error'>No changes were made. </h3><br />";
+  echo (mysqli_affected_rows($con)) ? "<h3 class='container text-success'>Changes were saved </h3><br />" : "<h3 class='container text-error'>No changes were made. </h3><br />";
 }
 
 $row = mysqli_fetch_array ( mysqli_query($con,"SELECT * FROM `VIDEOGAMES` WHERE `serial_number` = '$serial_number' "));
@@ -121,6 +122,18 @@ $row = mysqli_fetch_array ( mysqli_query($con,"SELECT * FROM `VIDEOGAMES` WHERE 
                   <input class="form-control" type="text" name="developer" value='<?= stripslashes($row['developer']) ?>'>
                 </div>
               </div>
+
+              <div class="form-group">
+                <label for="title" class="col-sm-2 control-label">Enabled</label>
+                <div class="col-sm-10">
+                  <select class="form-control" id='gameEnabled' required name='gameEnabled'>
+                          <option value="1"  <?php if($row['enabled']=="1") echo "selected";?>>Yes</option>
+                          <option value="0"  <?php if($row['enabled']=="0") echo "selected";?>>No</option>
+                  </select>
+
+
+              </div>
+            </div>
 
                         <div class="form-group">
                           <div class="col-sm-offset-2 col-sm-10 ">

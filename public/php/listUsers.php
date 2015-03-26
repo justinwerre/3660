@@ -10,6 +10,8 @@
         <title>Customers</title>
 
 <link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="../css/index.css">
+<link rel="stylesheet" type="text/css" href="../css/jquery.dataTables.css">
 <link rel="stylesheet" type="text/css" href="../css/bootstrap-theme.css">
 
 <style>
@@ -25,28 +27,38 @@
           $query = "SELECT * FROM CUSTOMERS";
           $result = mysqli_query($con, $query);
 
-          echo "<table class=\"table table-bordered table-striped\">"; // start a table tag in the HTML
-          echo "<tr><th>Email Address</th>
+          echo "<div class=\"padder-top\">
+                <table id=\"listAll\" class=\"table table-bordered table-striped\" cellspacing=\"0\" width=\"100%\">
+                <thead>
+                <tr><th>Email Address</th>
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Address</th>
                 <th>User Type</th>
                 <th>Edit</th>
                 <th>Empty Cart</th>
-                </tr>";
+                </tr>
+                </thead>
+                <tbody>";
+
           while($row = mysqli_fetch_array($result)){   //Creates a loop to loop through results
-            echo "<tr><td>". $row['cEmail'];
-            echo "</td><td>".  $row['cfName'];
-            echo "</td><td>".  $row['clName'];
-            echo "</td><td>". $row['cAddress'];
-            echo "</td><td>";
-              if($row['cUserType']=="1") echo "Admin";
-                else if ($row['cUserType']=="0") echo "User";
+            echo "<tr><td>" .  $row['cEmail'].
+                 "</td><td>".  $row['cfName'].
+                 "</td><td>".  $row['clName'].
+                 "</td><td>".  $row['cAddress'].
+                 "</td><td>";
+
+                 //In the table display the UserType
+                 if($row['cUserType']=="1") echo "Admin";
+                 else if ($row['cUserType']=="0") echo "User";
+
             echo "</td><td> <a class=\"btn btn-primary\" href=\"editUsers.php?cID={$row['cID']}\" role=\"button\"><span class=\"glyphicon glyphicon-pencil\" aria-hidden=\"true\"></span> Edit</a>";
             echo "</td><td> <a class=\"btn btn-danger\" href=\"deleteCart.php?cID={$row['cID']}\" role=\"button\"><span class=\"glyphicon glyphicon-trash\" aria-hidden=\"true\"></span> Empty Cart</a>";
             echo "</td></tr>";
           }
-          echo "</table>";
+          echo "</tbody>
+                </table>
+                </div>";
 
           mysql_close();
       ?>
@@ -55,5 +67,11 @@
 
 
     </body>
-
+    <script type="text/javascript" src="../js/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript">
+    $(document).ready( function() {
+     $('#listAll').dataTable();
+    });
+    </script>
     </html>

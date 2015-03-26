@@ -3,10 +3,12 @@
   include "functions.php";
   checkAdmin();
 
+  //Check if submitted
   if (isset($_POST['submitted'])) {
     $sql = "INSERT INTO VIDEOGAMES (title,price,ESRB_rating,release_date,cover_art,description,developer)
     VALUES('$_POST[title]','$_POST[price]','$_POST[ESRB_rating]','$_POST[releaseDate]','$_POST[cover_art]','$_POST[description]','$_POST[developer]')";
 
+    //Display success or error message
     if(!mysqli_query($con,$sql)){
        echo "<h3 class='container text-error'>Cannot Add User: Game already exists </h3><br>";
         mysqli_close($con);

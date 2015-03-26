@@ -3,7 +3,8 @@
   include "functions.php";
 
   checkUser();
-  
+
+  //Set Values
   if (isset($_SESSION["email"])) {
     $myEmail = $_SESSION["email"];
   }
@@ -39,6 +40,7 @@
 
 
         <?php
+        //PLACE HOLDER FOR PURCHASED
         $query = "SELECT * FROM CUSTOMERS";
         $result = mysqli_query($con, $query);
 
@@ -57,6 +59,7 @@
           echo "</td><td>".  $row['clName'];
           echo "</td><td>". $row['cAddress'];
           echo "</td><td>";
+
             if($row['cUserType']=="1") echo "Admin";
               else if ($row['cUserType']=="0") echo "User";
           echo "</td><td> <a class=\"btn btn-primary\" href=\"editUsers.php?cID={$row['cID']}\" role=\"button\"><span class=\"glyphicon glyphicon-pencil\" aria-hidden=\"true\"></span> Edit</a>";

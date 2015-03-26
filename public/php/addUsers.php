@@ -3,12 +3,13 @@
   include "functions.php";
   checkAdmin();
 
+  //Check if submitted
   if (isset($_POST['submitted'])) {
     $sql = "INSERT INTO CUSTOMERS (cEmail,cPassword,cAddress,cfName,clName,cUserType)
     	VALUES('$_POST[email]','$_POST[password]','$_POST[address]','$_POST[firstName]','$_POST[lastName]','$_POST[UserType]')";
 
+    //Display success or error message
     if(!mysqli_query($con,$sql)){
-
        echo "<h3 class='container text-error'>Cannot Add User: Email Already Taken </h3><br>";
         mysqli_close($con);
       }

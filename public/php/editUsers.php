@@ -1,6 +1,7 @@
 <?php
   include "databaseConnect.php";
   include "functions.php";
+
   checkAdmin();
 
   //Check to make sure, Serial number is passed
@@ -21,7 +22,8 @@
   `cfName` =  '{$_POST['firstName']}',
   `clName` =  '{$_POST['lastName']}' ,
   `cAddress` =  '{$_POST['address']}' ,
-  `cUserType` =  '{$_POST['UserType']}'
+  `cUserType` =  '{$_POST['UserType']}',
+  `cActive` =  '{$_POST['userActive']}'
   WHERE `cID` = '$cID' ";
 
   mysqli_query($con,$sql) or die(mysqli_error($con));
@@ -34,7 +36,7 @@
     $userEmail = $row['cEmail'];
   }
   //Output yes or No
-  echo (mysqli_affected_rows($con)) ? "<h3 class='container text-success'>Edited $gameTitle. </h3><br />" : "<h3 class='container text-error'>No changes made. </h3><br />";
+  echo (mysqli_affected_rows($con)) ? "<h3 class='container text-success'> Changes were saved </h3><br />" : "<h3 class='container text-error'>No changes were made </h3><br />";
 }
 
 $row = mysqli_fetch_array ( mysqli_query($con,"SELECT * FROM `CUSTOMERS` WHERE `cID` = '$cID' "));
@@ -100,15 +102,26 @@ $row = mysqli_fetch_array ( mysqli_query($con,"SELECT * FROM `CUSTOMERS` WHERE `
                   <input class="form-control" type="text" name="address" value='<?= stripslashes($row['cAddress']) ?>'>
                 </div>
               </div>
+
+              <div class="form-group">
+                <label for="title" class="col-sm-2 control-label">Account Active</label>
+                <div class="col-sm-10">
+                  <select class="form-control" id='userActive' required name='userActive'>
+                          <option value="1"  <?php if($row['cActive']=="1") echo "selected";?>>Yes</option>
+                          <option value="0"  <?php if($row['cEmail'] == $_SESSION['email']){ echo "disabled=\"disabled\" ". " ";} if($row['cActive']=="0") echo "selected";?>>No</option>
+                  </select>
+                </div>
+              </div>
               <div class="form-group">
                 <label for="" class="col-sm-2 control-label">User Type</label>
                 <div class="col-sm-10">
               <select class="form-control" id='UserType' required name='UserType'>
                       <option value="1"  <?php if($row['cUserType']=="1") echo "selected";?>>Admin</option>
-                      <option value="0"  <?php if($row['cUserType']=="0") echo "selected";?>>User</option>
+                      <option value="0"  <?php if($row['cEmail'] == $_SESSION['email']){ echo "disabled=\"disabled\" ". " ";} if($row['cUserType']=="0") echo "selected";?>>User</option>
               </select>
                 </div>
               </div>
+
 
                         <div class="form-group">
                           <div class="col-sm-offset-2 col-sm-10">
