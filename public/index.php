@@ -10,33 +10,14 @@
         <title>Video Game Store</title>
 
 <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="css/index.css">
 <style>
-  .padder{
-    padding-bottom:10px;
-  }
-  .padder-top{
-    padding-top:200px;
-  }
-  .padder-left{
-    padding-left:75px;
-  }
-  .makeCenter {
-    margin-left: auto;
-    margin-right: auto;
-    width: 70%;
-  }
-
-
-  .resizeBox{
-    width:450px;
-
-  }
 </style>
  </head>
     <body>
 
 
-<div class="container padder-left padder-top">
+<div class="container padder-left big-padder-top">
     <div class="">
       <h1 class="header makeCenter">VIDEO GAME STORE</h1>
     </div>

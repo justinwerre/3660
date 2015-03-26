@@ -6,10 +6,9 @@
 //Insert into database
 if (empty($_POST['email']) || empty($_POST['pwd'])) {
   echo"<h1> Can't have Blank Fields</h1>";
-  header("location:index.html");
+  header("location:index.php");
 }
 else {
-
 
 $sql = "INSERT INTO CUSTOMERS (cEmail,cPassword,cAddress,cfName,clName)
 	VALUES('$_POST[email]','$password','$_POST[address]','$_POST[fName]','$_POST[lName]')";
@@ -22,14 +21,7 @@ if (!mysqli_query($con, $sql)){
 else {
   echo "User Created!";
   mysqli_close($con);
-  /*
-    mysqli_close($con);
-    session_start();
-    $_SESSION['email'] = $_POST['user_email'];
-    $_SESSION['pwd'] = $password;
-    //$_SESSION['name'] = $_POST['user_name'];
-    header("location:created.php");
-    */
-}
+
+  }
 }
 ?>

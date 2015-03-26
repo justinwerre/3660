@@ -10,7 +10,7 @@ if (isset($_SESSION['admin'])) {
 if (isset($_SESSION['email'])) {
     unset($_SESSION['email']);
 }
-session_destroy();
+  session_destroy();
 ?>
 
 
@@ -32,7 +32,7 @@ session_destroy();
                             <div class="control-group">
                                 <label class="control-label" for="input01"></label>
                                 <div class="controls">
-                                    <a class="btn" href="../index.php">home</a>
+                                    <a class="btn btn-info" href="../index.php">Home</a>
                                 </div>
                             </div>
             </div>

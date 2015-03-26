@@ -17,28 +17,31 @@
         <title>Video Games</title>
 
 <link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="../css/index.css">
+<link rel="stylesheet" type="text/css" href="../css/jquery.dataTables.css">
 <link rel="stylesheet" type="text/css" href="../css/bootstrap-theme.css">
 
 <style>
 </style>
+
  </head>
     <body>
 
 
 <div class="container">
       <h1 class="header">VIDEO GAMES</h1>
-
-      <?php
+<?php
       if($isAdmin == 1){
-        echo "<a class='btn btn-info pull-right' href='shoppingCart.php' role='button'><span class=\"glyphicon glyphicon-plus\" aria-hidden=\"true\"></span> Add Game</a>";
+        echo "<a class='btn btn-info pull-right' href='addGames.php' role='button'><span class=\"glyphicon glyphicon-plus\" aria-hidden=\"true\"></span> Add Game</a>";
       }
       else {
-        echo "<a class='btn btn-info pull-right' href='shoppingCart.php' role='button'><span class=\"glyphicon glyphicon-shopping-cart\" aria-hidden=\"true\"></span> Shopping Cart</a>";
+        echo "<a class='btn btn-info pull-right  ' href='shoppingCart.php' role='button'><span class=\"glyphicon glyphicon-shopping-cart\" aria-hidden=\"true\"></span> Shopping Cart</a>";
       }
           $query = "SELECT * FROM VIDEOGAMES";
           $result = mysqli_query($con, $query);
-
-          echo "<table class=\"table table-bordered table-striped\">"; // start a table tag in the HTML
+          echo "<div class=\"padder-top\">";
+          echo "<table id=\"listAll\" class=\"table table-bordered table-striped\" cellspacing=\"0\" width=\"100%\">"; // start a table tag in the HTML
+          echo "<thead>";
           echo "<tr><th>Art</th>";
           echo "<th>Title</th>";
           echo "<th>Description</th>";
@@ -49,6 +52,8 @@
             echo "<th>Delete</th></tr>";
             }
             else echo "<th>Add to Cart</th></tr>";
+          echo "</thead>";
+          echo "<tbody>";
           while($row = mysqli_fetch_array($result)){   //Creates a loop to loop through results
 
           echo "<tr>";
@@ -67,14 +72,28 @@
           }
           echo "</td></tr>";
           }
+          echo "</tbody>";
           echo "</table>";
+          echo "</div>";
 
           mysql_close();
+
+      if($isAdmin == 1 ){
+        echo "<a href=\"adminLanding.php\"<button type=\"button\" class=\"btn btn-info\">Back</button></a>";
+      }
+      else echo "<a href=\"userLanding.php\"<button type=\"button\" class=\"btn btn-info\">Back</button></a>";
       ?>
-      <a href="adminLanding.php"<button type="button" class="btn btn-info">Back</button></a>
 </div>
 
 
     </body>
+    <script type="text/javascript" src="../js/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript">
+    $(document).ready( function() {
+     $('#listAll').dataTable();
+    });
+    </script>
+
 
     </html>

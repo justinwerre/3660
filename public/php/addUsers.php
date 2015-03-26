@@ -3,45 +3,21 @@
   include "functions.php";
   checkAdmin();
 
-  //Check to make sure, Serial number is passed
-  if (isset($_GET['cID']) ) {
-  	$cID = (int) $_GET['cID'];
-  }
-
-  //If Page is submitted check
   if (isset($_POST['submitted'])) {
-  	foreach($_POST AS $key => $value) {
-  		$_POST[$key] = mysqli_real_escape_string($con,$value);
-    }
+    $sql = "INSERT INTO CUSTOMERS (cEmail,cPassword,cAddress,cfName,clName,cUserType)
+    	VALUES('$_POST[email]','$_POST[password]','$_POST[address]','$_POST[firstName]','$_POST[lastName]','$_POST[UserType]')";
 
-  //Create the Query
-  $sql = "UPDATE `CUSTOMERS` SET
-  `cEmail` =  '{$_POST['email']}' ,
-  `cPassword` =  '{$_POST['password']}' ,
-  `cfName` =  '{$_POST['firstName']}',
-  `clName` =  '{$_POST['lastName']}' ,
-  `cAddress` =  '{$_POST['address']}' ,
-  `cUserType` =  '{$_POST['UserType']}'
-  WHERE `cID` = '$cID' ";
+    if(!mysqli_query($con,$sql)){
 
-  mysqli_query($con,$sql) or die(mysqli_error($con));
+       echo "<h3 class='container text-error'>Cannot Add User: Email Already Taken </h3><br>";
+        mysqli_close($con);
+      }
+      else {
+        echo "<h3 class='container text-success'>Added User. </h3><br>";
+        mysqli_close($con);
+      }
 
-  //Grab Title
-  if(isset($_POST['cEmail'])) {
-    $userEmail = $_POST['cEmail'];
-  }
-  else {
-    $userEmail = $row['cEmail'];
-  }
-  //Output yes or No
-  echo (mysqli_affected_rows($con)) ? "<h3 class='container text-success'>Edited $gameTitle. </h3><br />" : "<h3 class='container text-error'>No changes made. </h3><br />";
 }
-
-$row = mysqli_fetch_array ( mysqli_query($con,"SELECT * FROM `CUSTOMERS` WHERE `cID` = '$cID' "));
-  mysqli_close($con);
-
-
-
 
 ?>
 <!DOCTYPE html>
@@ -61,51 +37,49 @@ $row = mysqli_fetch_array ( mysqli_query($con,"SELECT * FROM `CUSTOMERS` WHERE `
 
       <div class="container">
         <div class="jumbotron">
-      <h2>Editing <?echo $row['cfName'] ." ". $row['clName'] .":"; ?></h2>
+      <h2>Add User</h2>
                         <form class="form-horizontal" method='post' action=''>
 
                           <div class="form-group">
                             <label for="title" class="col-sm-2 control-label">Email</label>
                             <div class="col-sm-10">
-                            <input class="form-control" type="email" required name="email" value='<?= stripslashes($row['cEmail']) ?>'>
+                            <input class="form-control" type="email"  name="email" required placeholder='example@example.com'>
                           </div>
                         </div>
 
                         <div class="form-group">
                           <label for="price" class="col-sm-2 control-label">Password</label>
                           <div class="col-sm-10">
-                          <input class="form-control" type="password" required name="password" value='<?= stripslashes($row['cPassword']) ?>'>
+                          <input class="form-control" type="password"  name="password" required placeholder='password'>
                         </div>
                       </div>
-
-
 
                       <div class="form-group">
                         <label for="title" class="col-sm-2 control-label">First Name</label>
                         <div class="col-sm-10">
-                        <input class="form-control" type="text" name="firstName" value='<?= stripslashes($row['cfName']) ?>'>
+                        <input class="form-control" type="text" required name="firstName" placeholder='First Name'>
                       </div>
                     </div>
 
                     <div class="form-group">
                       <label for="title" class="col-sm-2 control-label">Last Name</label>
                       <div class="col-sm-10">
-                      <input class="form-control" type="text" name="lastName" value='<?= stripslashes($row['clName']) ?>'>
+                      <input class="form-control" type="text"  required name="lastName" placeholder='Last Name'>
                     </div>
                   </div>
 
                 <div class="form-group">
                   <label for="title" class="col-sm-2 control-label">Address</label>
                   <div class="col-sm-10">
-                  <input class="form-control" type="text" name="address" value='<?= stripslashes($row['cAddress']) ?>'>
+                  <input class="form-control" type="text"  required name="address" placeholder='Address'>
                 </div>
               </div>
               <div class="form-group">
                 <label for="" class="col-sm-2 control-label">User Type</label>
                 <div class="col-sm-10">
-              <select class="form-control" id='UserType' required name='UserType'>
-                      <option value="1"  <?php if($row['cUserType']=="1") echo "selected";?>>Admin</option>
-                      <option value="0"  <?php if($row['cUserType']=="0") echo "selected";?>>User</option>
+              <select class="form-control" id='UserType' name="UserType" required placeholder='UserType'>
+                      <option value="1">Admin</option>
+                      <option value="0" selected>User</option>
               </select>
                 </div>
               </div>
@@ -115,7 +89,7 @@ $row = mysqli_fetch_array ( mysqli_query($con,"SELECT * FROM `CUSTOMERS` WHERE `
                             <input type='submit' class="btn btn-info pull-right" value='Confirm' /><input type='hidden' value='1' name='submitted' />
                             </div>
                             <div class="col-sm-offset-0 col-sm-10">
-                              <button class="btn btn-danger" formaction="../php/listUsers.php">Back</a>
+                              <a class="btn btn-danger" href="listUsers.php">Back</a>
                               </div>
                           </div>
                         </form>
