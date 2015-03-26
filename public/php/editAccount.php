@@ -1,9 +1,10 @@
 <?php
   include "databaseConnect.php";
   include "functions.php";
-  
+
   checkUser();
 
+  //Grab Values
   if (isset($_SESSION["email"])) {
     $myEmail = $_SESSION["email"];
   }
@@ -24,8 +25,7 @@
   `cPassword` =  '{$_POST['password']}' ,
   `cfName` =  '{$_POST['firstName']}',
   `clName` =  '{$_POST['lastName']}' ,
-  `cAddress` =  '{$_POST['address']}' ,
-  `cUserType` =  '{$_POST['UserType']}'
+  `cAddress` =  '{$_POST['address']}'
   WHERE `cID` = '$cID' ";
 
   mysqli_query($con,$sql) or die(mysqli_error($con));
@@ -38,13 +38,11 @@
     $userEmail = $row['cEmail'];
   }
   //Output yes or No
-  echo (mysqli_affected_rows($con)) ? "<h3 class='container text-success'>Edited $gameTitle. </h3><br />" : "<h3 class='container text-error'>No changes made. </h3><br />";
+  echo (mysqli_affected_rows($con)) ? "<h3 class='container text-success'>Changes were saved </h3><br />" : "<h3 class='container text-error'>No changes were made </h3><br />";
 }
 
 $row = mysqli_fetch_array ( mysqli_query($con,"SELECT * FROM `CUSTOMERS` WHERE `cID` = '$cID' "));
   mysqli_close($con);
-
-
 
 
 ?>
@@ -104,15 +102,7 @@ $row = mysqli_fetch_array ( mysqli_query($con,"SELECT * FROM `CUSTOMERS` WHERE `
                   <input class="form-control" type="text" name="address" value='<?= stripslashes($row['cAddress']) ?>'>
                 </div>
               </div>
-              <div class="form-group">
-                <label for="" class="col-sm-2 control-label">User Type</label>
-                <div class="col-sm-10">
-              <select class="form-control" id='creditCard' required name='UserType'>
-                      <option value="1"  <?php if($row['cUserType']=="1") echo "selected";?>>Admin</option>
-                      <option value="0"  <?php if($row['cUserType']=="0") echo "selected";?>>User</option>
-              </select>
-                </div>
-              </div>
+
 
                         <div class="form-group">
                           <div class="col-sm-offset-2 col-sm-10">

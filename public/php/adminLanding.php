@@ -1,10 +1,14 @@
 <?php
   include "databaseConnect.php";
   include "functions.php";
+
   checkAdmin();
+
+  //Grab email
   if (isset($_SESSION['email'])) {
     $myEmail = $_SESSION['email'];
   }
+  
 ?>
 <!DOCTYPE html>
 

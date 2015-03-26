@@ -1,5 +1,5 @@
 <?php
-//Logout User
+//Logout User and Destroy Session
 session_start();
 if (isset($_SESSION['ID'])) {
     unset($_SESSION['ID']);

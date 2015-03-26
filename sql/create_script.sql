@@ -7,6 +7,7 @@ CREATE TABLE CUSTOMERS (
   `cfName` varchar(15) NOT NULL DEFAULT '',
   `clName` varchar(20) NOT NULL DEFAULT '',
   `cUserType` tinyint(1) NOT NULL,
+  `cActive` tinyint(1) DEFAULT '1',
   PRIMARY KEY (`cID`),
   UNIQUE KEY `cEmail` (`cEmail`)
 );
@@ -27,6 +28,7 @@ CREATE TABLE `VIDEOGAMES` (
   `cover_art` varchar(45) NOT NULL,
   `description` varchar(150) NOT NULL,
   `developer` varchar(50) NOT NULL,
+  `enabled` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`serial_number`),
   UNIQUE KEY `serial_number_UNIQUE` (`serial_number`)
 );
@@ -61,7 +63,7 @@ CREATE TABLE `PURCHASES` (
 );
 
 INSERT INTO `PURCHASES` (`pID`, `cID`, `date`)
-VALUES 
+VALUES
 (1, 1, '2014-09-08')
 (2, 2, '2014-09-09');
 
@@ -74,6 +76,6 @@ CREATE TABLE `ORDERED` (
 );
 
 INSERT INTO `ORDERED` (`serial_number`, `pID`, `price`)
-VALUES 
+VALUES
 (1, 1, 19.99)
 (2, 2, 19.99);
