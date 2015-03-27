@@ -36,7 +36,7 @@
 
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta charset="utf-8">
-        <title>Error</title>
+        <title>Sorry </title>
 
 <link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="../css/index.css">
@@ -53,7 +53,7 @@
       <h3>The Username or Password is Incorrect</h3>
 
                             <a type="submit" class="btn btn-info" href="../index.php">Try again</a>
-                            <a type="submit" class="btn btn-primary" href="../html/newUser.html">Sign Up</a>
+                            <a type="submit" class="btn btn-primary" href="../php/newUser.php">Sign Up</a>
 
 </div>
 
