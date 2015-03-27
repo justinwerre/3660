@@ -2,7 +2,7 @@
   include "databaseConnect.php";
   include "functions.php";
   session_start();
-  
+
   //Set Values
   if (isset($_SESSION["email"])) {
     $myEmail = $_SESSION["email"];
@@ -82,6 +82,8 @@
       if($isAdmin == 1){
         echo "<a class='btn btn-info pull-right' href='addGames.php' role='button'><span class=\"glyphicon glyphicon-plus\" aria-hidden=\"true\"></span> Add Game</a>";
       }
+          $twoQuery = "SELECT ORDERED.serial_number FROM ORDERED, PURCHASES WHERE ORDERED.pID = PURCHASES.pID and PURCHASES.cID = $cID";
+          $twoResult = mysqli_query($con, $twoQuery);
 
           $query = "SELECT * FROM VIDEOGAMES";
           $result = mysqli_query($con, $query);
@@ -103,10 +105,7 @@
           echo "</thead>
                 <tbody>";
           while($row = mysqli_fetch_array($result)){   //Creates a loop to loop through results
-
             //Check if game is
-
-
               echo "<tr>";
               echo "<td>"   . "<img src=\"../img/".$row['cover_art']."\" height=\"50\" width=\"100\">" ."</td>";
               echo "<td>"   . "<strong>".$row['title'] ."</strong>" . "</td>";

@@ -134,22 +134,16 @@ $row = mysqli_fetch_array ( mysqli_query($con,"SELECT * FROM `VIDEOGAMES` WHERE 
 
               </div>
             </div>
-
                         <div class="form-group">
                           <div class="col-sm-offset-2 col-sm-10 ">
                             <input type='submit' class="btn btn-info pull-right" value='Confirm' /><input type='hidden' value='1' name='submitted' />
                             </div>
                             <div class="col-sm-offset-0 col-sm-10">
-                              <button class="btn btn-danger" formaction="../php/listGames.php">Back</a>
+                              <button class="btn btn-primary" formaction="../php/listGames.php">Back</a>
                               </div>
                           </div>
                         </form>
                       </div>
                     </div>
-
-
-      <table class="table table-bordered"> </table>
-
-
       </body>
     </html>
