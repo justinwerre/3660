@@ -67,32 +67,31 @@
 
     <div class="container">
       <h1 class="header">Welcome <?echo $myEmail; ?></h1>
-
         <?php
         //PLACE HOLDER FOR PURCHASED
-        $query = "SELECT * FROM CUSTOMERS";
+        $query = "SELECT VIDEOGAMES.title, VIDEOGAMES.cover_art,
+        VIDEOGAMES.ESRB_rating, VIDEOGAMES.description, PURCHASES.pDate
+        FROM VIDEOGAMES, ORDERED, PURCHASES
+        WHERE $cID = PURCHASES.cID AND PURCHASES.pID = ORDERED.pID
+        AND ORDERED.serial_number = VIDEOGAMES.serial_number";
+
         $result = mysqli_query($con, $query);
 
         echo "<table class=\"table table-bordered table-striped\">"; // start a table tag in the HTML
-        echo "<tr><th>Email Address</th>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>Address</th>
-              <th>User Type</th>
-              <th>Edit</th>
-              <th>Empty Cart</th>
+        echo "<tr><th>Album Art</th>
+              <th>Title</th>
+              <th>ESRB_rating</th>
+              <th>Description</th>
+              <th>Date Purchased</th>
+              <th>Download</th>
               </tr>";
         while($row = mysqli_fetch_array($result)){   //Creates a loop to loop through results
-          echo "<tr><td>". $row['cEmail'];
-          echo "</td><td>".  $row['cfName'];
-          echo "</td><td>".  $row['clName'];
-          echo "</td><td>". $row['cAddress'];
-          echo "</td><td>";
-
-            if($row['cUserType']=="1") echo "Admin";
-              else if ($row['cUserType']=="0") echo "User";
-          echo "</td><td> <a class=\"btn btn-primary\" href=\"editUsers.php?cID={$row['cID']}\" role=\"button\"><span class=\"glyphicon glyphicon-pencil\" aria-hidden=\"true\"></span> Edit</a>";
-          echo "</td><td> <a class=\"btn btn-danger\" href=\"deleteCart.php?cID={$row['cID']}\" role=\"button\"><span class=\"glyphicon glyphicon-trash\" aria-hidden=\"true\"></span> Empty Cart</a>";
+          echo "<tr><td> <img src=\"../img/".$row['cover_art']."\" height=\"50\" width=\"100\">";
+          echo "</td><td>".  $row['title'];
+          echo "</td><td>".  $row['ESRB_rating'];
+          echo "</td><td>".  $row['description'];
+          echo "</td><td>". $row['pDate'];
+          echo "</td><td> <a class=\"btn btn-info\" href=\"editUsers.php?cID={$row['cID']}\" role=\"button\"><span class=\"glyphicon glyphicon-save\" aria-hidden=\"true\"></span> Download</a>";
           echo "</td></tr>";
         }
         echo "</table>";
