@@ -21,6 +21,7 @@
 
 <link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="../css/index.css">
+<link rel="stylesheet" type="text/css" href="../css/jquery.dataTables.css">
 <link rel="stylesheet" type="text/css" href="../css/bootstrap-theme.css">
 
 <style>
@@ -77,7 +78,7 @@
 
         $result = mysqli_query($con, $query);
 
-        echo "<table class=\"table table-bordered table-striped\">"; // start a table tag in the HTML
+        echo "<table id=\"listAll\" class=\"table table-bordered table-striped\">"; // start a table tag in the HTML
         echo "<tr><th>Album Art</th>
               <th>Title</th>
               <th>ESRB_rating</th>
@@ -86,13 +87,16 @@
               <th>Download</th>
               </tr>";
         while($row = mysqli_fetch_array($result)){   //Creates a loop to loop through results
-          echo "<tr><td> <img src=\"../img/".$row['cover_art']."\" height=\"50\" width=\"100\">";
-          echo "</td><td>".  $row['title'];
-          echo "</td><td>".  $row['ESRB_rating'];
-          echo "</td><td>".  $row['description'];
-          echo "</td><td>". $row['pDate'];
-          echo "</td><td> <a class=\"btn btn-info\" href=\"editUsers.php?cID={$row['cID']}\" role=\"button\"><span class=\"glyphicon glyphicon-save\" aria-hidden=\"true\"></span> Download</a>";
-          echo "</td></tr>";
+
+            echo "<tr><td> <img src=\"../img/".$row['cover_art']."\" height=\"50\" width=\"100\">";
+            echo "</td><td>".  $row['title'];
+            echo "</td><td>".  $row['ESRB_rating'];
+            echo "</td><td>".  $row['description'];
+            echo "</td><td>". $row['pDate'];
+            echo "</td><td> <a class=\"btn btn-info\" href=\"\" role=\"button\"><span class=\"glyphicon glyphicon-save\" aria-hidden=\"true\"></span> Download</a>";
+            echo "</td></tr>";
+
+
         }
         echo "</table>";
 
@@ -107,5 +111,6 @@
 
     </body>
     <script type="text/javascript" src="../js/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="../js/bootstrap.js"></script>
     </html>

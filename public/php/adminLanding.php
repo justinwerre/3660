@@ -29,11 +29,8 @@
 </style>
  </head>
     <body>
-
-
           <nav class="navbar navbar-inverse navbar-default">
           <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
               <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                 <span class="sr-only">Toggle navigation</span>
@@ -43,14 +40,11 @@
               </button>
               <a class="navbar-brand" href="#"><?echo $myEmail; ?></a>
             </div>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul class="nav navbar-nav">
                 <li><a href="listGames.php"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Video Games</a></li>
                 <li class="active"><span class="sr-only">(current)</span><a href="adminLanding.php"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Users</a></li>
               </ul>
-
               <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Account<span class="caret"></span></a>
@@ -59,8 +53,8 @@
                   </ul>
                 </li>
               </ul>
-            </div><!-- /.navbar-collapse -->
-          </div><!-- /.container-fluid -->
+            </div>
+          </div>
           </nav>
 
 <div class="container">
@@ -77,6 +71,7 @@
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Address</th>
+                <th>Active </th>
                 <th>User Type</th>
                 <th>Edit</th>
                 <th>Empty Cart</th>
@@ -90,6 +85,11 @@
                  "</td><td>".  $row['clName'].
                  "</td><td>".  $row['cAddress'].
                  "</td><td>";
+
+                 if ($row['cActive'] == 1) echo "Yes";
+                    else echo "<b>No</b>";
+                 echo "</td><td>";
+
 
                  //In the table display the UserType
                  if($row['cUserType']=="1") echo "Admin";
