@@ -38,7 +38,7 @@
                         <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
                             <button type="submit" class="btn btn-primary" formaction="php/checklogin.php">Login</button>
-                            <button type="submit" class="btn btn-primary" formaction="html/newUser.html">Sign Up</a>
+                            <button type="submit" class="btn btn-primary" formaction="php/newUser.php">Sign Up</a>
                           </div>
                         </form>
 </div>
