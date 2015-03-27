@@ -4,6 +4,15 @@
 
   checkAdmin();
 
+  //Set Values
+  if (isset($_SESSION["email"])) {
+    $myEmail = $_SESSION["email"];
+  }
+
+  if (isset($_SESSION["ID"])){
+    $cID = $_SESSION["ID"];
+  }
+
   //Check to make sure, Serial number is passed
   if (isset($_GET['cID']) ) {
   	$cID = (int) $_GET['cID'];
@@ -28,13 +37,6 @@
 
   mysqli_query($con,$sql) or die(mysqli_error($con));
 
-  //Grab Title
-  if(isset($_POST['cEmail'])) {
-    $userEmail = $_POST['cEmail'];
-  }
-  else {
-    $userEmail = $row['cEmail'];
-  }
   //Output yes or No
   echo (mysqli_affected_rows($con)) ? "<h3 class='container text-success'> Changes were saved </h3><br />" : "<h3 class='container text-error'>No changes were made </h3><br />";
 }
@@ -59,6 +61,37 @@ $row = mysqli_fetch_array ( mysqli_query($con,"SELECT * FROM `CUSTOMERS` WHERE `
 </style>
  </head>
     <body>
+                <nav class="navbar navbar-inverse navbar-default">
+                <div class="container-fluid">
+                  <!-- Brand and toggle get grouped for better mobile display -->
+                  <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                      <span class="sr-only">Toggle navigation</span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#"><?echo $myEmail; ?></a>
+                  </div>
+
+                  <!-- Collect the nav links, forms, and other content for toggling -->
+                  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                      <li><a href="listGames.php"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Video Games</a></li>
+                      <li class="active"><span class="sr-only">(current)</span><a href="adminLanding.php"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Users</a></li>
+                    </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                      <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Account<span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                          <li><a href="logout.php"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Log Out</a></li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </div><!-- /.navbar-collapse -->
+                </div><!-- /.container-fluid -->
+                </nav>
 
 
       <div class="container">
@@ -128,7 +161,7 @@ $row = mysqli_fetch_array ( mysqli_query($con,"SELECT * FROM `CUSTOMERS` WHERE `
                             <input type='submit' class="btn btn-info pull-right" value='Confirm' /><input type='hidden' value='1' name='submitted' />
                             </div>
                             <div class="col-sm-offset-0 col-sm-10">
-                              <button class="btn btn-danger" formaction="../php/listUsers.php">Back</a>
+                              <button class="btn btn-primary" formaction="../php/adminLanding.php">Back</a>
                               </div>
                           </div>
                         </form>
@@ -140,4 +173,6 @@ $row = mysqli_fetch_array ( mysqli_query($con,"SELECT * FROM `CUSTOMERS` WHERE `
 
 
       </body>
+      <script type="text/javascript" src="../js/jquery-1.11.2.min.js"></script>
+      <script type="text/javascript" src="../js/bootstrap.js"></script>
     </html>
