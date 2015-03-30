@@ -1,6 +1,7 @@
 <?php
   include "databaseConnect.php";
   include "functions.php";
+  session_start();
   checkUser();
   if (isset($_SESSION["email"])) {
     $myEmail = $_SESSION["email"];
@@ -54,7 +55,6 @@
       <h1 class="header">Shopping Cart</h1>
       <table class="table table-bordered table-striped">
         <?php
-          session_start();
           $query = "SELECT VIDEOGAMES.title, VIDEOGAMES.description, VIDEOGAMES.ESRB_rating, VIDEOGAMES.price, SHOPPINGCART.serial_number
             FROM SHOPPINGCART
             INNER JOIN CUSTOMERS ON CUSTOMERS.cID = SHOPPINGCART.cID
