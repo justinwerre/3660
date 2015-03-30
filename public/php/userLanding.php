@@ -1,6 +1,7 @@
 <?php
   include "databaseConnect.php";
   include "functions.php";
+  session_start();
 
   checkUser();
   //Set Values
