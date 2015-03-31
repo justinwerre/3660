@@ -28,4 +28,21 @@
     }
   }
 
+  //Used for checking if an item is already in a User's cart
+  //Precondition: user must not have purchased an item and an item must be in the cart.
+  function checkCart($con, $cID, $serial_number){
+    $result = mysqli_query($con, "SELECT * FROM SHOPPINGCART
+      WHERE SHOPPINGCART.cID = $cID AND SHOPPINGCART.serial_number = $serial_number");
+
+    $num_rows = mysqli_num_rows( $result);
+
+    if($num_rows >= 1) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+
+
 ?>

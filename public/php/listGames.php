@@ -124,9 +124,18 @@
                 echo "</td>";
               }
               else {
-
+                //If game is disabled disable purchase
                 if($row['enabled'] == 0) echo "<td><a class='btn btn-warning' disabled=\"disabled\" href='addToCart.php?serial_number={$row['serial_number']}' role='button'>Not Available</a>";
-                else echo "<td><a class='btn btn-success' href='addToCart.php?serial_number={$row['serial_number']}' role='button'>Add to Cart</a>";
+                else if ($row['enabled'] == 1){
+                  //If game is enabled, then check if its in cart
+                  if (checkCart($con, $cID, $row['serial_number'])){
+                    echo "<td><a class='btn btn-primary' disabled=\"disabled\" href='addToCart.php?serial_number={$row['serial_number']}' role='button'>In Cart</a>";
+                  }
+                  else
+                  //checkPurchased($con, $cID, $row['serial_number']);
+                  //Else game can be purchased
+                  echo "<td><a class='btn btn-success' href='addToCart.php?serial_number={$row['serial_number']}' role='button'>Add to Cart</a>";
+                }
               }
               echo "</td></tr>";
             }
