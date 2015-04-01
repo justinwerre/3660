@@ -54,8 +54,6 @@
     }
   }
 
-  $success = false;
-
   $con->close();
 ?>
 <!DOCTYPE html>
