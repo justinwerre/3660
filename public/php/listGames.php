@@ -120,7 +120,7 @@
                 echo "</td>";
                 echo "<td>"."<a class=\"btn btn-primary\" href=\"editGames.php?serial_number={$row['serial_number']}\" role=\"button\"><span class=\"glyphicon glyphicon-pencil\" aria-hidden=\"true\"></span> Edit</a>";
                 echo "</td>";
-                echo "<td>"."<a class=\"btn btn-danger\" href=\"deleteGames.php?serial_number={$row['serial_number']}\" role=\"button\"><span class=\"glyphicon glyphicon-trash\" aria-hidden=\"true\"></span> Delete</a>";
+                echo "<td>"."<a class=\"btn btn-danger\" href=\"confirmDelete.php?serial_number={$row['serial_number']}\" role=\"button\"><span class=\"glyphicon glyphicon-trash\" aria-hidden=\"true\"></span> Delete</a>";
                 echo "</td>";
               }
               else {

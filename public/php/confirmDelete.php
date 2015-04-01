@@ -14,7 +14,7 @@
 
   //Check to make sure, Serial number is passed
   if (isset($_GET['serial_number']) ) {
-  	$serial_number = (int) $_GET['serial_number'];
+  	$serial_number = $_GET['serial_number'];
   }
 
   //If Page is submitted check
@@ -22,22 +22,20 @@
   	foreach($_POST AS $key => $value) {
   		$_POST[$key] = mysqli_real_escape_string($con,$value);
     }
+  }
 
-  //Create the Query
-  //$sql = "DELETE FROM VIDEOGAMES INNER JOIN ORDERED ON VIDEOGAMES.serial_number = ORDERED.serial_number";
-  $sql = "DELETE FROM ORDERED WHERE ORDERED.serial_number = $serial_number";
-  mysqli_query($con,$sql) or die(mysqli_error($con));
-  var_dump($con);
+  $query = "SELECT title
+            FROM VIDEOGAMES
+            WHERE serial_number = $serial_number;";
+  $result = $con->query( $query );
+  $row = $result->fetch_assoc();
 
-  //Output yes or No
-  echo (mysqli_affected_rows($con)) ? "<h3 class='container text-success'>Delete was a Success</h3><br />" : "<h3 class='container text-error'>No changes were made. </h3><br />";
-}
 ?>
 <!DOCTYPE html>
 
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta charset="utf-8">
-        <title>Edit VideoGames</title>
+        <title>delete VideoGame</title>
 
 <link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="../css/bootstrap-theme.css">
@@ -76,11 +74,9 @@
 
       <div class="container">
         <div class="jumbotron">
-          <h2>Confirm Delete <?php echo $gameTitle; ?> </h2>
-          <form class="form-horizontal" method='post' action=''>
+          <h2>Are you sure you want to delete <?php echo $row['title']; ?> ?</h2>
             <a class="btn btn-primary" href="listGames.php">Cancel</a>
-            <input type='submit' class="btn btn-danger" value='Confirm' /><input type='hidden' value='1' name='submitted' />
-          </form>
+            <a class="btn btn-danger" href="deleteGame.php?serialNumber=<?php echo $serial_number; ?>">Delete</a>
         </div>
     </div>
 
