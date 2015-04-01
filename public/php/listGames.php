@@ -127,8 +127,11 @@
                 //If game is disabled disable purchase
                 if($row['enabled'] == 0) echo "<td><a class='btn btn-warning' disabled=\"disabled\" href='addToCart.php?serial_number={$row['serial_number']}' role='button'>Not Available</a>";
                 else if ($row['enabled'] == 1){
+                  //check to see if the game has already been purchased
+                  if( checkLibrary( $con, $cID, $row['serial_number'] ) ){
+                    echo "<td><a class='btn btn-info' disabled=\"disabled\" href='addToCart.php?serial_number={$row['serial_number']}' role='button'>In Library</a>";
                   //If game is enabled, then check if its in cart
-                  if (checkCart($con, $cID, $row['serial_number'])){
+                  }else if (checkCart($con, $cID, $row['serial_number'])){
                     echo "<td><a class='btn btn-primary' disabled=\"disabled\" href='addToCart.php?serial_number={$row['serial_number']}' role='button'>In Cart</a>";
                   }
                   else
