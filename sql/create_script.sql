@@ -1,4 +1,9 @@
+DROP TABLE IF EXISTS SHOPPINGCART;
+DROP TABLE IF EXISTS ORDERED;
+DROP TABLE IF EXISTS PURCHASES;
 DROP TABLE IF EXISTS CUSTOMERS;
+DROP TABLE IF EXISTS VIDEOGAMES;
+
 CREATE TABLE CUSTOMERS (
   `cID` int(11) NOT NULL AUTO_INCREMENT,
   `cEmail` varchar(30) NOT NULL DEFAULT '',
@@ -18,7 +23,6 @@ VALUES
 	(2, 'justin@werre.com', 'bye', '12', 'Justin', 'Werre', 1),
 	(3,'ryan.kellet@uleth.ca','12','','Rylor','Kellort',0);
 
-DROP TABLE IF EXISTS `VIDEOGAMES`;
 CREATE TABLE `VIDEOGAMES` (
   `serial_number` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(45) NOT NULL,
@@ -40,11 +44,12 @@ VALUES
 	(3,'Dark Souls II',29.99,'Teen','2012-09-16','ds2.jpg','Prepare to get Die edition','From Software'),
 	(4,'Borderlands: The Presequel',59.99,'Teen','2014-02-13','bl3.jpg','Same game for the third time now. Whoo!','Gearbox Software');
 
-DROP TABLE IF EXISTS `SHOPPINGCART`;
 CREATE TABLE `SHOPPINGCART` (
 	`serial_number` int(11) NOT NULL,
 	`cID` int(11) NOT NULL,
-	PRIMARY KEY (`serial_number`, `cID`)
+	PRIMARY KEY (`serial_number`, `cID`),
+	FOREIGN KEY (`serial_number`) REFERENCES VIDEOGAMES(`serial_number`) ON DELETE CASCADE,
+	FOREIGN KEY (`cID`) REFERENCES CUSTOMERS(`cID`) ON DELETE CASCADE
 );
 
 INSERT INTO `SHOPPINGCART` (`cID`, `serial_number`)
@@ -54,12 +59,12 @@ VALUES
 	(2, 2),
 	(3, 3);
 
-DROP TABLE IF EXISTS `PURCHASES`;
 CREATE TABLE `PURCHASES` (
 	`pID` int(11) NOT NULL AUTO_INCREMENT,
 	`cID` int(11) NOT NULL,
 	`pDate` DATE NOT NULL,
-	PRIMARY KEY (`pID`)
+	PRIMARY KEY (`pID`),
+	FOREIGN KEY (`cID`) REFERENCES CUSTOMERS(`cID`) ON DELETE CASCADE
 );
 
 INSERT INTO `PURCHASES` (`pID`, `cID`, `pDate`)
@@ -67,12 +72,13 @@ VALUES
 (1, 1, '2014-09-08'),
 (2, 2, '2014-09-09');
 
-DROP TABLE IF EXISTS `ORDERED`;
 CREATE TABLE `ORDERED` (
 	`serial_number` int(11) NOT NULL,
 	`pID` int(11) NOT NULL,
 	`price` decimal(7,2) NOT NULL,
-	PRIMARY KEY (`serial_number`, `pID`)
+	PRIMARY KEY (`serial_number`, `pID`),
+	FOREIGN KEY (`pID`) REFERENCES PURCHASES(`pID`) ON DELETE CASCADE,
+	FOREIGN KEY (`serial_number`) REFERENCES VIDEOGAMES(`serial_number`) ON DELETE CASCADE
 );
 
 INSERT INTO `ORDERED` (`serial_number`, `pID`, `price`)VALUES 

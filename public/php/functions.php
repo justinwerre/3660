@@ -44,5 +44,26 @@
     }
   }
 
+  // used for checking if an item has already been purchased by the user
+  // returns true if the user owns the game already, false other wise.
+  function checkLibrary( $con, $cID, $serial_number ){
+    $query = "SELECT *
+              FROM PURCHASES
+              INNER JOIN ORDERED ON PURCHASES.pID = ORDERED.pID
+              WHERE PURCHASES.cID = {$cID}
+              AND ORDERED.serial_number = {$serial_number};";
+    $query_result = $con->query( $query );
+
+    if( $query_result->num_rows ){
+      // The user already owns the game; return true
+      $result = true;
+    }else{
+      // The user doesn't own the game; return false
+      $result = false;
+    }
+
+    return $result;
+  }
+
 
 ?>

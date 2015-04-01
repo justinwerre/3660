@@ -120,16 +120,19 @@
                 echo "</td>";
                 echo "<td>"."<a class=\"btn btn-primary\" href=\"editGames.php?serial_number={$row['serial_number']}\" role=\"button\"><span class=\"glyphicon glyphicon-pencil\" aria-hidden=\"true\"></span> Edit</a>";
                 echo "</td>";
-                echo "<td>"."<a class=\"btn btn-danger\" href=\"deleteGames.php?serial_number={$row['serial_number']}\" role=\"button\"><span class=\"glyphicon glyphicon-trash\" aria-hidden=\"true\"></span> Delete</a>";
+                echo "<td>"."<a class=\"btn btn-danger\" href=\"confirmDelete.php?serial_number={$row['serial_number']}\" role=\"button\"><span class=\"glyphicon glyphicon-trash\" aria-hidden=\"true\"></span> Delete</a>";
                 echo "</td>";
               }
               else {
                 //If game is disabled disable purchase
                 if($row['enabled'] == 0) echo "<td><a class='btn btn-warning' disabled=\"disabled\" href='addToCart.php?serial_number={$row['serial_number']}' role='button'>Not Available</a>";
                 else if ($row['enabled'] == 1){
+                  //check to see if the game has already been purchased
+                  if( checkLibrary( $con, $cID, $row['serial_number'] ) ){
+                    echo "<td><a class='btn btn-info' href='userLanding.php' role='button'>In Library</a>";
                   //If game is enabled, then check if its in cart
-                  if (checkCart($con, $cID, $row['serial_number'])){
-                    echo "<td><a class='btn btn-primary' disabled=\"disabled\" href='addToCart.php?serial_number={$row['serial_number']}' role='button'>In Cart</a>";
+                  }else if (checkCart($con, $cID, $row['serial_number'])){
+                    echo "<td><a class='btn btn-primary' href='shoppingCart.php' role='button'>In Cart</a>";
                   }
                   else
                   //checkPurchased($con, $cID, $row['serial_number']);
