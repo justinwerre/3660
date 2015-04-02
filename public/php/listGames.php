@@ -93,7 +93,10 @@
                 <tr><th>Art</th>
                 <th>Title</th>
                 <th>Description</th>
-                <th>Price</th>";
+                <th>Rating</th>
+                <th>Developer</th>
+                <th>Price</th>"
+                ;
 
           if($isAdmin == 1){
             echo "<th>Enabled</th>
@@ -110,6 +113,8 @@
               echo "<td>"   . "<img src=\"../img/".$row['cover_art']."\" height=\"50\" width=\"100\">" ."</td>";
               echo "<td>"   . "<strong>".$row['title'] ."</strong>" . "</td>";
               echo "<td>"   . $row['description'] ."</td>";
+              echo "<td>"   . $row['ESRB_rating'] ."</td>";
+              echo "<td>"   . $row['developer'] ."</td>";
               echo "<td>"   . "$".$row['price'] ."</td>";
 
 
