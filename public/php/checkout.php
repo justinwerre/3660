@@ -70,11 +70,11 @@ if (isset($_SESSION["email"])) {
 						echo "<td>{$row['title']}</td>";
 						echo "<td>{$row['description']}</td>";
 						echo "<td>{$row['ESRB_rating']}</td>";
-						echo "<td>{$row['price']}</td>";
+						echo "<td>$ {$row['price']}</td>";
 						echo "</tr>";
             $total += $row['price'];
           }
-          echo "<tr><td colspan=3>Total</td><td>$total</td></tr>";
+          echo "<tr><td colspan=3>Total</td><td>$ $total</td></tr>";
 
           $con->close();
         ?>

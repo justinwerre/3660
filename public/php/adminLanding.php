@@ -74,7 +74,6 @@
                 <th>Active </th>
                 <th>User Type</th>
                 <th>Edit</th>
-                <th>Empty Cart</th>
                 </tr>
                 </thead>
                 <tbody>";
@@ -96,7 +95,6 @@
                  else if ($row['cUserType']=="0") echo "User";
 
             echo "</td><td> <a class=\"btn btn-primary\" href=\"editUsers.php?cID={$row['cID']}\" role=\"button\"><span class=\"glyphicon glyphicon-pencil\" aria-hidden=\"true\"></span> Edit</a>";
-            echo "</td><td> <a class=\"btn btn-danger\" href=\"deleteCart.php?cID={$row['cID']}\" role=\"button\"><span class=\"glyphicon glyphicon-trash\" aria-hidden=\"true\"></span> Empty Cart</a>";
             echo "</td></tr>";
           }
           echo "</tbody>
