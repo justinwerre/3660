@@ -113,7 +113,7 @@
                       <div class="form-group">
                         <label for="title" class="col-sm-2 control-label">Release Date</label>
                         <div class="col-sm-10">
-                        <input class="form-control" type="text" required pattern='\d{4}[\-]\d{2}[\-]\d{2}' title="Format YYYY-MM-DD" name="releaseDate" placeholder='2015-01-01'>
+                        <input class="form-control" type="date" required pattern='\d{4}[\-]\d{2}[\-]\d{2}' title="Format YYYY-MM-DD" name="releaseDate" placeholder='2015-01-01'>
                       </div>
                     </div>
 
